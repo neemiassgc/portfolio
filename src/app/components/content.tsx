@@ -37,21 +37,38 @@ function Tile() {
   )
 }
 
-function LiveDemoButton() {
+function DocsButton() {
   return (
-    <Tooltip title="Live Demo">
+    <MyButton title="Documentation">
+      <DocsIcon className="text-3xl"/>
+    </MyButton>
+  )
+}
+
+function GithubButton() {
+  return (
+    <Tooltip title="GitHub Repository">
       <IconButton>
-        <GpsFixedIcon className="text-2xl"/>
-      </IconButton>  
+        <GitHubIcon className="text-3xl"/>
+      </IconButton>
     </Tooltip>
   )
 }
 
-function LastCommit() {
+function LiveDemoButton() {
   return (
-    <Box>
-      <Box component="p">make a little change to the link to other README</Box>
-      <Box component="p">26/12/24 on <GitBranchIcon/> main</Box>
-    </Box>
+    <MyButton title="Live Demo">
+      <GpsFixedIcon className="text-3xl"/>
+    </MyButton>
+  )
+}
+
+function MyButton(props: {title: string, children: React.ReactNode}) {
+  return (
+    <Tooltip title={props.title}>
+      <IconButton>
+        {props.children}
+      </IconButton>
+    </Tooltip>
   )
 }
