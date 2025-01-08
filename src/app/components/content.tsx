@@ -1,5 +1,5 @@
-import { Box, Card, CardActions, CardContent, CardHeader, Chip, IconButton, Tooltip, Typography } from "@mui/material"
-import { GitBranchIcon } from "./svg"
+import { Box, Card, CardActions, CardContent, CardHeader, Chip, IconButton, Tooltip } from "@mui/material"
+import GitHubIcon from '@mui/icons-material/GitHub';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 
 export default function MainContent() {
