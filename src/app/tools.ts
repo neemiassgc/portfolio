@@ -1,4 +1,4 @@
-export function splitBy<Type>(array: Type[], size: number): Type[][] {
+function splitBy<Type>(array: Type[], size: number): Type[][] {
   const result: Type[][] = [];
   let index: number = 0;
   for (let i = 0; i < size; i++) {
