@@ -26,3 +26,11 @@ function splitBy<Type>(array: Type[], size: number): Type[][] {
     result[result.length - 1].push(array[index++]);
   return result;
 }
+
+export function treatRepositoryTitle(title: string): string {
+  return title
+    .replace(/-/g, " ").replace(/_/g, " ")
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
