@@ -1,8 +1,8 @@
-import { RepositoryInfo } from "./types";
+import { Repository } from "./types";
 
-export function tweakRepositoriesByTopics(repositories: RepositoryInfo[]): RepositoryInfo[][] {
-  const splittedRepositories: RepositoryInfo[][] = splitBy(repositories, 2);
-  const topicsLengthToRepositories: {[key: number]: RepositoryInfo[]} = splittedRepositories
+export function tweakRepositoriesByTopics(repositories: Repository[]): Repository[][] {
+  const splittedRepositories: Repository[][] = splitBy(repositories, 2);
+  const topicsLengthToRepositories: {[key: number]: Repository[]} = splittedRepositories
     .slice(0, splittedRepositories.length - 1)
     .reduce((prev, repos) => {
       const topicsSum: number = repos.reduce((acc, repo) => acc + repo.topics.length, 0);

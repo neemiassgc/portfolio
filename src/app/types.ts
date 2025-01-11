@@ -1,9 +1,17 @@
-export interface Repository {
+interface BasicProps {
   name: string;
   description: string;
   topics: string[];
 }
 
-export type GitHubRepository = Repository & { contents_url: string, html_url: string };
+export type GitHubRepository = BasicProps & {
+  html_url: string;
+  homepage: string;
+  contents_url: string;
+}
 
-export type RepositoryInfo = Repository & { readme: string, lastCommit: string, url: string };
+export type Repository = BasicProps & {
+  liveDemoLink?: string,
+  docsLink?: string,
+  githubLink: string,
+}
