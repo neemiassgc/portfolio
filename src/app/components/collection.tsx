@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps, Tooltip } from "@mui/material"
+import { SvgIcon, SvgIconProps, Tooltip, IconButton } from "@mui/material"
 import SpringBootSvg from "../assets/spring-boot.svg"
 import JavaSvg from "../assets/java.svg"
 import GoogleCloudSvg from "../assets/google-cloud.svg"
@@ -14,10 +14,14 @@ import Ruby from "../assets/ruby.svg"
 import TailwindCss from "../assets/tailwind-css.svg"
 import Docker from "../assets/docker.svg"
 import Hibernate from "../assets/hibernate.svg"
-import CircleIcon from '@mui/icons-material/Circle'
+import CircleIcon from "@mui/icons-material/Circle"
+import GitHubIcon from '@mui/icons-material/GitHub';
+import GpsFixedIcon from '@mui/icons-material/GpsFixed';
+import DocsIcon from '@mui/icons-material/Article';
+import Link from "next/link";
 import { ReactNode } from "react"
 
-export default function Icon({title, iconName, ...svgIconProps}:
+export function Svg({title, iconName, ...svgIconProps}:
   SvgIconProps & { title: string, iconName: string }
 ) {
   const importedIcons: {[key: string]: ReactNode} = {
@@ -46,3 +50,25 @@ export default function Icon({title, iconName, ...svgIconProps}:
     </Tooltip>
   )
 }
+
+export function LinkButton(props: {
+  title: string, href: string, iconName: "live-demo" | "docs" | "github"
+}) {
+
+  const buttonIcons: { [key: string]: React.ReactNode } = {
+    "live-demo": <GpsFixedIcon className="text-3xl"/>,
+    "docs": <DocsIcon className="text-3xl"/>,
+    "github": <GitHubIcon className="text-3xl"/>
+  }
+
+  return (
+    <Tooltip title={props.title}>
+      <Link href={props.href}>
+        <IconButton>
+          {buttonIcons[props.iconName]}
+        </IconButton>
+      </Link>
+    </Tooltip>
+  )
+}
+
