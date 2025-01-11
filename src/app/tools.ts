@@ -27,7 +27,7 @@ function splitBy<Type>(array: Type[], size: number): Type[][] {
   return result;
 }
 
-export function treatRepositoryTitle(title: string): string {
+export function beautifyRepositoryTitle(title: string): string {
   return title
     .replace(/-/g, " ").replace(/_/g, " ")
     .split(" ")
