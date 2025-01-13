@@ -34,3 +34,29 @@ export function beautifyRepositoryTitle(title: string): string {
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 }
+
+export function findTechStackNames(topics: string[]): [string, string, string] {
+  const programmingLanguages: string[] = [
+    "java", "javascript", "typescript", "python",
+    "c#", "c++", "c", "kotlin", "ruby", "go", "rust"
+  ]
+  const frameworks: string[] = [
+    "spring-boot", "react", "angular", "vue", "nextjs", "gatsby",
+    "express", "flask", "django", "rails", "laravel", "symfony"
+  ]
+  const cloudPlatforms: string[] = [
+    "aws", "google-cloud", "firebase", "github-pages",
+    "azure", "heroku", "netlify", "vercel", "digitalocean"
+  ]
+
+  return [
+    findIconNameByTopic(programmingLanguages, topics) || "",
+    findIconNameByTopic(frameworks, topics) || "",
+    findIconNameByTopic(cloudPlatforms, topics) || "",
+  ]
+}
+
+function findIconNameByTopic(iconNames: string[], topics: string[]): string | undefined {
+  return iconNames.find(iconName => topics.some(topic => topic.includes(iconName)));
+}
+}
