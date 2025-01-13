@@ -62,7 +62,11 @@ export function findTechStackNames(topics: string[]): [string, string, string] {
 }
 
 function findIconNameByTopic(iconNames: string[], topics: string[]): string | undefined {
-  return iconNames.find(iconName => topics.some(topic => topic.includes(iconName)));
+  return iconNames.find(iconName =>
+    topics.some(topic =>
+      topic.includes("-") && iconName.includes("-")
+        ? topic.includes(iconName) : topic === iconName
+    ));
 }
 
 function capitalize(string: string): string {
