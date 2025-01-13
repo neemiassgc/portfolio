@@ -1,19 +1,20 @@
-import { SvgIcon, SvgIconProps, Tooltip, IconButton } from "@mui/material"
-import SpringBootSvg from "../assets/spring-boot.svg"
-import JavaSvg from "../assets/java.svg"
-import GoogleCloudSvg from "../assets/google-cloud.svg"
-import Aws from "../assets/aws.svg"
-import Css3 from "../assets/css3.svg"
-import Html5 from "../assets/html5.svg"
-import Javascript from "../assets/javascript.svg"
-import React from "../assets/react.svg"
-import Typescript from "../assets/typescript.svg"
-import NextJs from "../assets/next-js.svg"
-import Vercel from "../assets/vercel.svg"
-import Ruby from "../assets/ruby.svg"
-import TailwindCss from "../assets/tailwind-css.svg"
-import Docker from "../assets/docker.svg"
-import Hibernate from "../assets/hibernate.svg"
+import { SvgIcon, SvgIconProps, Tooltip, IconButton } from "@mui/material";
+import SpringBootSvg from "../assets/spring-boot.svg";
+import JavaSvg from "../assets/java.svg";
+import GoogleCloudSvg from "../assets/google-cloud.svg";
+import Aws from "../assets/aws.svg";
+import Css3 from "../assets/css3.svg";
+import Html5 from "../assets/html5.svg";
+import Javascript from "../assets/javascript.svg";
+import React from "../assets/react.svg";
+import Typescript from "../assets/typescript.svg";
+import NextJs from "../assets/next-js.svg";
+import Vercel from "../assets/vercel.svg";
+import Ruby from "../assets/ruby.svg";
+import TailwindCss from "../assets/tailwind-css.svg";
+import Firebase from "../assets/firebase.svg";
+import Docker from "../assets/docker.svg";
+import Hibernate from "../assets/hibernate.svg";
 import CircleIcon from "@mui/icons-material/Circle"
 import GitHubIcon from '@mui/icons-material/GitHub';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
@@ -26,20 +27,21 @@ export function Svg({title, iconName, ...svgIconProps}:
 ) {
   const importedIcons: {[key: string]: ReactNode} = {
     "java": <JavaSvg/>,
-    "springBoot": <SpringBootSvg/>,
-    "googleCloud": <GoogleCloudSvg/>,
+    "spring-boot": <SpringBootSvg/>,
+    "google-cloud": <GoogleCloudSvg/>,
     "aws": <Aws/>,
     "css3": <Css3/>,
     "html5": <Html5/>,
     "javascript": <Javascript/>,
     "react": <React/>,
     "typescript": <Typescript/>,
-    "nextJs": <NextJs/>,
+    "nextjs": <NextJs/>,
     "vercel": <Vercel/>,
     "ruby": <Ruby/>,
-    "tailwindCss": <TailwindCss/>,
+    "tailwind-css": <TailwindCss/>,
     "docker": <Docker/>,
-    "hibernate": <Hibernate/>
+    "hibernate": <Hibernate/>,
+    "firebase": <Firebase/>
   }
 
   return (
