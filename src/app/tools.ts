@@ -32,11 +32,11 @@ function splitBy<Type>(array: Type[], size: number): Type[][] {
   return result;
 }
 
-export function beautifyRepositoryTitle(title: string): string {
+export function formatTitle(title: string): string {
   return title
     .replace(/-/g, " ").replace(/_/g, " ")
     .split(" ")
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map(capitalize)
     .join(" ");
 }
 
@@ -65,6 +65,6 @@ function findIconNameByTopic(iconNames: string[], topics: string[]): string | un
   return iconNames.find(iconName => topics.some(topic => topic.includes(iconName)));
 }
 
-export function capitalize(string: string): string {
+function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
