@@ -65,7 +65,7 @@ export function LinkButton(props: {
 
   return (
     <Tooltip title={props.title}>
-      <Link href={props.href}>
+      <Link target="_blank" href={props.href}>
         <IconButton>
           {buttonIcons[props.iconName]}
         </IconButton>
