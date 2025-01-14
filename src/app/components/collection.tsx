@@ -16,9 +16,6 @@ import Firebase from "../assets/firebase.svg";
 import Docker from "../assets/docker.svg";
 import Hibernate from "../assets/hibernate.svg";
 import CircleIcon from "@mui/icons-material/Circle"
-import GitHubIcon from '@mui/icons-material/GitHub';
-import GpsFixedIcon from '@mui/icons-material/GpsFixed';
-import DocsIcon from '@mui/icons-material/Article';
 import Link from "next/link";
 import { ReactNode } from "react"
 
@@ -54,20 +51,13 @@ export function Svg({title, iconName, ...svgIconProps}:
 }
 
 export function LinkButton(props: {
-  title: string, href: string, iconName: "live-demo" | "docs" | "github"
+  title: string, href: string, children?: ReactNode
 }) {
-
-  const buttonIcons: { [key: string]: React.ReactNode } = {
-    "live-demo": <GpsFixedIcon className="text-3xl"/>,
-    "docs": <DocsIcon className="text-3xl"/>,
-    "github": <GitHubIcon className="text-3xl"/>
-  }
-
   return (
     <Tooltip title={props.title}>
       <Link target="_blank" href={props.href}>
         <IconButton>
-          {buttonIcons[props.iconName]}
+          {props.children}
         </IconButton>
       </Link>
     </Tooltip>

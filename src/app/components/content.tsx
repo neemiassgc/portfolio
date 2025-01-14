@@ -3,6 +3,9 @@ import { Repository } from "@/types";
 import { findTechStackNames, formatTitle, tweakRepositoriesByTopics } from "@/tools";
 import { Svg, LinkButton } from "./collection";
 import { getRepositories } from "@/net";
+import GitHubIcon from '@mui/icons-material/GitHub';
+import GpsFixedIcon from '@mui/icons-material/GpsFixed';
+import DocsIcon from '@mui/icons-material/Article';
 
 export default async function MainContent() {
 
@@ -41,14 +44,20 @@ function Tile(props: { repository: Repository}) {
         <Box>
           {
             props.repository.liveDemoLink &&
-            <LinkButton title="Live Demo" href={props.repository.liveDemoLink} iconName="live-demo"/>
+            <LinkButton title="Live Demo" href={props.repository.liveDemoLink}>
+              <GpsFixedIcon className="text-3xl"/>  
+            </LinkButton>
           }
           {
             props.repository.docsLink &&
-            <LinkButton title="Docs" href={props.repository.docsLink} iconName="docs"/>
+            <LinkButton title="Docs" href={props.repository.docsLink}>
+              <DocsIcon className="text-3xl"/>
+            </LinkButton>
           }
           {
-            <LinkButton title="GitHub" href={props.repository.githubLink} iconName="github"/>
+            <LinkButton title="GitHub" href={props.repository.githubLink}>
+              <GitHubIcon className="text-3xl"/>
+            </LinkButton>
           }
         </Box>
         <Box component="span">
