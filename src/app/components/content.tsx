@@ -1,74 +1,68 @@
-import { Box, Card, CardActions, CardContent, CardHeader, Chip, IconButton, Tooltip } from "@mui/material"
-import GitHubIcon from '@mui/icons-material/GitHub';
-import GpsFixedIcon from '@mui/icons-material/GpsFixed';
+import { Box, Card, CardActions, CardContent, CardHeader, Chip } from "@mui/material"
+import { Repository } from "@/types";
+import { findTechStackNames, formatTitle, tweakRepositoriesByTopics } from "@/tools";
+import { Svg, LinkButton } from "./collection";
+import { getRepositories } from "@/net";
 
-export default function MainContent() {
+export default async function MainContent() {
+
+  const repositories: Repository[] = await getRepositories();
+  const tweakedRepositories: Repository[][] = tweakRepositoriesByTopics(repositories);
+
   return (
     <Box className="ml-[360px]">
-      <Box className="p-4 flex flex-wrap gap-6 justify-center">
-        <Tile/>
-        <Tile/>
-        <Tile/>
+      <Box className="p-8 flex gap-4">
+        {
+          tweakedRepositories.map((repos, i) =>
+            <Box key={i} className="basis-1/2 flex flex-col gap-4">
+              {
+                repos.map((repo, j) => <Tile key={j} repository={repo}/>)
+              }  
+            </Box>
+          )
+        }
       </Box>
     </Box>
   )
 }
 
-function Tile() {
-  const badges: string[] = ["React", "Typescript", "Material UI", "TailwindCss", "NextJS", "Vercel"];
-
+function Tile(props: { repository: Repository}) {
   return (
-    <Card className="basis-1/3">
+    <Card className="h-fit p-2">
       <CardHeader
-        title="Contact Manager UI"
-        action={<LiveDemoButton/>}
-        subheader={<LastCommit/>}/>
-      <CardContent>
-        <Typography variant="subtitle2">
-          Uma interface Web para interagir com a API do projeto Contact Manager API que tem como finalidade gerenciar contatos
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing className="flex flex-wrap">
+        title={formatTitle(props.repository.name)}
+        subheader={props.repository.description}/>
+        <CardContent className="flex flex-wrap justify-start gap-2">
         {
-          badges.map((item, index) => (<Chip size="small" label={item} className="m-1" key={index} />))
+          props.repository.topics.map((item, index) => (<Chip size="small" label={item} key={index} />))
         }
+        </CardContent>
+      <CardActions disableSpacing className="flex justify-between">
+        <Box>
+          {
+            props.repository.liveDemoLink &&
+            <LinkButton title="Live Demo" href={props.repository.liveDemoLink} iconName="live-demo"/>
+          }
+          {
+            props.repository.docsLink &&
+            <LinkButton title="Docs" href={props.repository.docsLink} iconName="docs"/>
+          }
+          {
+            <LinkButton title="GitHub" href={props.repository.githubLink} iconName="github"/>
+          }
+        </Box>
+        <Box component="span">
+          {
+            findTechStackNames(props.repository.topics).map((topic, index) => (
+              topic &&
+              <Svg
+                title={formatTitle(topic)}
+                iconName={topic} className="mr-1" key={index}
+              />
+            ))
+          }
+        </Box>
       </CardActions>
   </Card>
-  )
-}
-
-function DocsButton() {
-  return (
-    <MyButton title="Documentation">
-      <DocsIcon className="text-3xl"/>
-    </MyButton>
-  )
-}
-
-function GithubButton() {
-  return (
-    <Tooltip title="GitHub Repository">
-      <IconButton>
-        <GitHubIcon className="text-3xl"/>
-      </IconButton>
-    </Tooltip>
-  )
-}
-
-function LiveDemoButton() {
-  return (
-    <MyButton title="Live Demo">
-      <GpsFixedIcon className="text-3xl"/>
-    </MyButton>
-  )
-}
-
-function MyButton(props: {title: string, children: React.ReactNode}) {
-  return (
-    <Tooltip title={props.title}>
-      <IconButton>
-        {props.children}
-      </IconButton>
-    </Tooltip>
   )
 }
