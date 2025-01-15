@@ -13,8 +13,9 @@ export default async function MainContent() {
   const tweakedRepositories: Repository[][] = tweakRepositoriesByTopics(repositories);
 
   return (
-    <Box className="ml-[360px]">
-      <Box className="p-8 flex gap-4">
+    <Box className="ml-[380px]">
+      <Box component="p" className="w-fit mx-auto text-3xl p-4 font-bold" sx={{color: hues.text}}>Projects</Box>
+      <Box className="pl-8 pr-8 flex gap-4 mt-3">
         {
           tweakedRepositories.map((repos, i) =>
             <Box key={i} className="basis-1/2 flex flex-col gap-4">
@@ -40,7 +41,7 @@ function Tile(props: { repository: Repository}) {
           props.repository.topics.map((item, index) =>
             (<Chip
               sx={{backgroundColor: hues.bg, color: hues.text}}
-              variant="filled" size="small" label={item} key={index} />))
+              variant="filled" className="font-bold" size="medium" label={item} key={index} />))
         }
         </CardContent>
       <CardActions disableSpacing className="flex justify-between">
