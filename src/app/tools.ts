@@ -72,3 +72,12 @@ function findIconNameByTopic(iconNames: string[], topics: string[]): string | un
 function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+
+export const hues = {
+  bg: "#fffffe",
+  "bg-secondary": "#f2f4f6",
+  text: "#00214d",
+  "text-secondary": "#1b2d45",
+  highlight: "#ff5470"
+}

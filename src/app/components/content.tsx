@@ -1,6 +1,6 @@
 import { Box, Card, CardActions, CardContent, CardHeader, Chip } from "@mui/material"
 import { Repository } from "@/types";
-import { findTechStackNames, formatTitle, tweakRepositoriesByTopics } from "@/tools";
+import { hues, findTechStackNames, formatTitle, tweakRepositoriesByTopics } from "@/tools";
 import { Svg, LinkButton } from "./collection";
 import { getRepositories } from "@/net";
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -31,13 +31,16 @@ export default async function MainContent() {
 
 function Tile(props: { repository: Repository}) {
   return (
-    <Card className="h-fit p-2">
+    <Card className="h-fit p-2 border-0 rounded-xl" sx={{backgroundColor: hues["bg-secondary"]}}>
       <CardHeader
-        title={formatTitle(props.repository.name)}
-        subheader={props.repository.description}/>
+        title={<Box sx={{color: hues.text}}>{formatTitle(props.repository.name)}</Box>}
+        subheader={<Box sx={{color: hues["text-secondary"]}}>{props.repository.description}</Box>}/>
         <CardContent className="flex flex-wrap justify-start gap-2">
         {
-          props.repository.topics.map((item, index) => (<Chip size="small" label={item} key={index} />))
+          props.repository.topics.map((item, index) =>
+            (<Chip
+              sx={{backgroundColor: hues.bg, color: hues.text}}
+              variant="filled" size="small" label={item} key={index} />))
         }
         </CardContent>
       <CardActions disableSpacing className="flex justify-between">
