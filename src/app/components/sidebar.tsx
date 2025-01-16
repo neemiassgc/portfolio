@@ -15,7 +15,7 @@ export default function Sidebar() {
   
   return (
     <Box component="div" className="h-full w-[380px] fixed top-0 left-0">
-      <Box className="pt-4 flex flex-col justify-between gap-0 h-full pl-2 overflow-auto">
+      <Box className="scrollbar pt-4 flex flex-col justify-between gap-0 h-full pl-2 overflow-auto">
         <Box>
           <Avatar variant="circular" className="h-32 w-32 mx-auto" src="https://api.dicebear.com/9.x/shapes/svg?seed=pine">N</Avatar>
           <Box component="p" className="text-lg text-center mt-1 font-mono" sx={{color: hues.text}}>Neemias Santos</Box>
