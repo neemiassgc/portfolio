@@ -4,36 +4,61 @@ import EmailIcon from '@mui/icons-material/Email';
 import { Avatar, Box, Chip } from "@mui/material"
 import { LinkButton, Svg } from './collection';
 import { hues } from '@/tools';
+import { ReactNode } from 'react';
 
 export default function Sidebar() {
+  return (
+    <SidebarContainer>
+      <SidebarHeader/>
+      <SidebarSkills/>
+      <SidebarFooter/>
+    </SidebarContainer>
+  )
+}
+
+function SidebarContainer({ children }: { children: ReactNode}) {
+  return (
+    <Box component="div" className="h-full w-[380px] fixed top-0 left-0">
+      <Box className="scrollbar pt-4 flex flex-col justify-between gap-0 h-full pl-2 overflow-auto">
+        {children}
+      </Box>
+    </Box>
+  )
+}
+
+function SidebarHeader() {
+  return (
+  <Box>
+    <Avatar variant="circular" className="h-32 w-32 mx-auto" src="https://api.dicebear.com/9.x/shapes/svg?seed=pine">N</Avatar>
+    <Box component="p" className="text-lg text-center mt-1 font-mono" sx={{color: hues.text}}>Neemias Santos</Box>
+    <Box component="p" className="text-3xl text-center mt-1 font-bold" sx={{color: hues.text}}>Java Developer</Box>
+    <Box component="p" className="text-center mt-1 p-2">
+      Etiam imperdiet erat ac finibus porttitor. Nullam non dictum mauris. Phasellus ultrices bibendum sapien.
+      Integer vehicula est vel risus congue, et efficitur eros tristique. Duis est augue, molestie ac enim ut,
+      faucibus suscipit arcu. Maecenas odio justo, luctus sed viverra sed, facilisis ac nisl. Etiam iaculis
+      nibh ac mollis imperdiet. Duis placerat tellus ex, ac varius libero ullamcorper vitae. Nulla tortor
+      tortor, congue eu urna at, elementum iaculis dui.
+    </Box>
+  </Box>
+  )
+}
+
+function SidebarSkills() {
   const skills: string[] = [
     "Java", "Spring", "Spring-Boot", "Spring-security", "Postgres", "Docker",
     "Hibernate", "Javascript", "Typescript", "Tailwind-css", "NextJS", "Kotlin",
     "Vercel", "Google-Cloud", "AWS", "Ruby", "React", "HTML",
     "CSS", "Git", "Supabase", "Linux", "Firebase"
   ]
-  
+
   return (
-    <Box component="div" className="h-full w-[380px] fixed top-0 left-0">
-      <Box className="scrollbar pt-4 flex flex-col justify-between gap-0 h-full pl-2 overflow-auto">
-        <Box>
-          <Avatar variant="circular" className="h-32 w-32 mx-auto" src="https://api.dicebear.com/9.x/shapes/svg?seed=pine">N</Avatar>
-          <Box component="p" className="text-lg text-center mt-1 font-mono" sx={{color: hues.text}}>Neemias Santos</Box>
-          <Box component="p" className="text-3xl text-center mt-1 font-bold" sx={{color: hues.text}}>Java Developer</Box>
-          <Box component="p" className="text-center mt-1 p-2">
-            Etiam imperdiet erat ac finibus porttitor. Nullam non dictum mauris. Phasellus ultrices bibendum sapien. Integer vehicula est vel risus congue, et efficitur eros tristique. Duis est augue, molestie ac enim ut, faucibus suscipit arcu. Maecenas odio justo, luctus sed viverra sed, facilisis ac nisl. Etiam iaculis nibh ac mollis imperdiet. Duis placerat tellus ex, ac varius libero ullamcorper vitae. Nulla tortor tortor, congue eu urna at, elementum iaculis dui.
-          </Box>
-        </Box>
-        <Box component="div" className="w-full pt-3 px-3 text-center">
-          <Box component="p" className="text-2xl font-bold hover:underline text-center mb-3" sx={{color: hues.text}}>Skills</Box>
-          <Box className="flex flex-wrap justify-center gap-3">
-          {
-            skills.map((item, index) =>
-              <Svg className="text-4xl" key={index} title={item} iconName={item.toLocaleLowerCase()}/>)
-          }
-          </Box>
-        </Box>
-        <SidebarFooter/>
+    <Box component="div" className="w-full pt-3 px-3 text-center">
+      <Box component="p" className="text-2xl font-bold hover:underline text-center mb-3" sx={{color: hues.text}}>Skills</Box>
+      <Box className="flex flex-wrap justify-center gap-3">
+      {
+        skills.map((item, index) =>
+          <Svg className="text-4xl" key={index} title={item} iconName={item.toLocaleLowerCase()}/>)
+      }
       </Box>
     </Box>
   )
