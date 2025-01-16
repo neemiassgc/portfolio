@@ -2,18 +2,20 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import { Avatar, Box, Chip } from "@mui/material"
-import { LinkButton } from './collection';
+import { LinkButton, Svg } from './collection';
 import { hues } from '@/tools';
 
 export default function Sidebar() {
   const skills: string[] = [
-    "Java", "Spring", "Spring Boot", "JPA", "Hibernate", "Javascript", "Typescript", "TailwindCss", "NextJS",
-    "Spring Data JPA", "Kotlin", "Vercel", "Google Cloud", "AWS"
+    "Java", "Spring", "Spring-Boot", "Spring-security", "Postgres", "Docker",
+    "Hibernate", "Javascript", "Typescript", "Tailwind-css", "NextJS", "Kotlin",
+    "Vercel", "Google-Cloud", "AWS", "Ruby", "React", "HTML",
+    "CSS", "Git", "Supabase", "Linux", "Firebase"
   ]
   
   return (
     <Box component="div" className="h-full w-[380px] fixed top-0 left-0">
-      <Box className="pt-4 flex flex-col justify-between gap-0 h-full pl-2">
+      <Box className="pt-4 flex flex-col justify-between gap-0 h-full pl-2 overflow-auto">
         <Box>
           <Avatar variant="circular" className="h-32 w-32 mx-auto" src="https://api.dicebear.com/9.x/shapes/svg?seed=pine">N</Avatar>
           <Box component="p" className="text-lg text-center mt-1 font-mono" sx={{color: hues.text}}>Neemias Santos</Box>
@@ -24,12 +26,12 @@ export default function Sidebar() {
         </Box>
         <Box component="div" className="w-full pt-3 px-3 text-center">
           <Box component="p" className="text-2xl font-bold hover:underline text-center mb-3" sx={{color: hues.text}}>Skills</Box>
+          <Box className="flex flex-wrap justify-center gap-3">
           {
             skills.map((item, index) =>
-              <Chip
-                sx={{backgroundColor: hues['bg-secondary'], color: hues['text-secondary']}}
-                size="small" label={item} className="m-1" key={index} />)
+              <Svg className="text-4xl" key={index} title={item} iconName={item.toLocaleLowerCase()}/>)
           }
+          </Box>
         </Box>
         <SidebarFooter/>
       </Box>
