@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 .scrollbar::-webkit-scrollbar {
   width: 3px;
 }
@@ -17,10 +12,4 @@
 
 .scrollbar::-webkit-scrollbar-thumb {
   background-color: darkgray;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
 }
