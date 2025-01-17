@@ -14,7 +14,7 @@ export default async function MainContent() {
 
   return (
     <Box className="ml-0 md:ml-[380px]">
-      <Box component="p" className="w-fit mx-auto text-3xl pt-4 font-bold text-hues-primary">Personal projects</Box>
+      <Box component="p" className="w-fit mx-auto text-3xl pt-4 font-bold text-hues-primary font-core">Personal projects</Box>
       <Box className="px-4 pb-8 pt-2 flex flex-col lg:flex-row gap-4 mt-3">
         {
           tweakedRepositories.map((repos, i) =>
@@ -35,13 +35,13 @@ function Tile(props: { repository: Repository}) {
   return (
     <Card className="h-fit p-2 border-0 rounded-xl w-full bg-hues-secondary">
       <CardHeader
-        title={<Box className="text-hues-primary">{formatTitle(props.repository.name)}</Box>}
-        subheader={<Box className="text-hues-secondary">{props.repository.description}</Box>}/>
+        title={<Box className="text-hues-primary font-core font-bold">{formatTitle(props.repository.name)}</Box>}
+        subheader={<Box className="text-hues-secondary font-core">{props.repository.description}</Box>}/>
         <CardContent className="flex flex-wrap justify-start gap-2">
         {
           props.repository.topics.map((item, index) =>
             (<Chip
-              className="bg-hues-primary text-hues-primary font-bold"
+              className="bg-hues-primary text-hues-primary font-bold font-core"
               variant="filled" size="medium" label={item} key={index} />))
         }
         </CardContent>

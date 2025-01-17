@@ -16,11 +16,8 @@ export default {
       "hues-secondary": "#1b2d45",
       "hues-highlight": "#ff5470"
     },
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
+    fontFamily: {
+      "core": ["var(--font-core)"],
     },
   },
   plugins: [],

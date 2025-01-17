@@ -2,15 +2,15 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import { Avatar, Box, Chip } from "@mui/material"
-import { Footer, LinkButton, Svg } from './collection';
+import { LinkButton, Svg } from './collection';
 import { ReactNode } from 'react';
 
 export default function Sidebar() {
   return (
     <SidebarContainer>
       <SidebarHeader/>
-      <SidebarSkills/>
       <SidebarFooter/>
+      <SidebarSkills/>
     </SidebarContainer>
   )
 }
@@ -18,7 +18,7 @@ export default function Sidebar() {
 function SidebarContainer({ children }: { children: ReactNode}) {
   return (
     <Box component="div" className="h-full w-full md:w-[380px] relative md:fixed top-0 left-0">
-      <Box className="scrollbar pt-4 flex flex-col justify-between gap-0 h-full pl-2 overflow-auto">
+      <Box className="scrollbar pt-4 flex flex-col justify-between gap-0 h-full pl-2 overflow-auto font-core">
         {children}
       </Box>
     </Box>
@@ -65,8 +65,8 @@ function SidebarSkills() {
 
 function SidebarFooter() {
   return (
-    <Box component="div" className="pb-0 mt-5 mb-5 md:pb-1 md:mt-0 md:mb-0 text-center">
-      <Box component="div" className="w-fit mx-auto">
+    <Box component="div" className="pb-0 mt-5 mb-5 md:pb-1 md:mt-0 md:mb-0 text-center bg-red-500">
+      <Box component="div" className="w-fit mx-auto bg-red-500">
         <Box component="span" className="w-fit">
           <LinkButton href="https://linkedin.com/in/neemias-santos-68a348186" title="LinkedIn">
             <LinkedInIcon className="text-4xl" sx={{color: "#0077B5"}}/>
@@ -76,11 +76,10 @@ function SidebarFooter() {
           </LinkButton>
         </Box>
         <Chip
-          className="ml-3 text-hues-secondary bg-hues-secondary"
+          className="ml-3 text-hues-secondary bg-hues-secondary font-core"
           icon={<EmailIcon/>} label="neemiassgc@outlook.com" variant="filled"
         />
       </Box>
-      <Footer className="hidden md:block"/>
     </Box>
   )
 }
