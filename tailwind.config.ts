@@ -7,6 +7,15 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    backgroundColor: {
+      "hues-primary": "#fffffe",
+      "hues-secondary": "#f2f4f6",
+    },
+    textColor: {
+      "hues-primary": "#00214d",
+      "hues-secondary": "#1b2d45",
+      "hues-highlight": "#ff5470"
+    },
     extend: {
       colors: {
         background: "var(--background)",

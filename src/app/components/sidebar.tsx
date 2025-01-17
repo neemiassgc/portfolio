@@ -3,7 +3,6 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import { Avatar, Box, Chip } from "@mui/material"
 import { Footer, LinkButton, Svg } from './collection';
-import { hues } from '@/tools';
 import { ReactNode } from 'react';
 
 export default function Sidebar() {
@@ -30,8 +29,8 @@ function SidebarHeader() {
   return (
   <Box>
     <Avatar variant="circular" className="h-32 w-32 mx-auto" src="https://api.dicebear.com/9.x/shapes/svg?seed=pine">N</Avatar>
-    <Box component="p" className="text-lg text-center mt-1 font-mono" sx={{color: hues.text}}>Neemias Santos</Box>
-    <Box component="p" className="text-3xl text-center mt-1 font-bold" sx={{color: hues.text}}>Java Developer</Box>
+    <Box component="p" className="text-lg text-center mt-1 text-hues-primary">Neemias Santos</Box>
+    <Box component="p" className="text-3xl text-center mt-1 font-bold text-hues-primary">Java Developer</Box>
     <Box component="p" className="text-center mt-1 p-2">
       Etiam imperdiet erat ac finibus porttitor. Nullam non dictum mauris. Phasellus ultrices bibendum sapien.
       Integer vehicula est vel risus congue, et efficitur eros tristique. Duis est augue, molestie ac enim ut,
@@ -53,7 +52,7 @@ function SidebarSkills() {
 
   return (
     <Box component="div" className="w-full pt-3 px-3 text-center">
-      <Box component="p" className="text-2xl font-bold hover:underline text-center mb-3" sx={{color: hues.text}}>Skills</Box>
+      <Box component="p" className="text-2xl font-bold hover:underline text-center mb-3 text-hues-primary">Skills</Box>
       <Box className="flex flex-wrap justify-center gap-3">
       {
         skills.map((item, index) =>
@@ -77,8 +76,8 @@ function SidebarFooter() {
           </LinkButton>
         </Box>
         <Chip
-          sx={{backgroundColor: hues['bg-secondary'], color: hues['text-secondary']}}
-          icon={<EmailIcon/>} label="neemiassgc@outlook.com" variant="filled" className="ml-3"
+          className="ml-3 text-hues-secondary bg-hues-secondary"
+          icon={<EmailIcon/>} label="neemiassgc@outlook.com" variant="filled"
         />
       </Box>
       <Footer className="hidden md:block"/>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { hues } from "./tools";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="antialiased"
-        style={{backgroundColor: hues.bg, color: hues["text-secondary"]}}
+        className="antialiased text-hues-secondary bg-hues-primary"
       >
         {children}
       </body>
