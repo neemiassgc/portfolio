@@ -1,7 +1,7 @@
 import { Box, Card, CardActions, CardContent, CardHeader, Chip } from "@mui/material"
 import { Repository } from "@/types";
 import { hues, findTechStackNames, formatTitle, tweakRepositoriesByTopics } from "@/tools";
-import { Svg, LinkButton } from "./collection";
+import { Svg, LinkButton, Footer } from "./collection";
 import { getRepositories } from "@/net";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
@@ -13,9 +13,9 @@ export default async function MainContent() {
   const tweakedRepositories: Repository[][] = tweakRepositoriesByTopics(repositories);
 
   return (
-    <Box className="ml-[380px]">
-      <Box component="p" className="w-fit mx-auto text-3xl p-4 font-bold" sx={{color: hues.text}}>Projects</Box>
-      <Box className="pl-8 pr-8 flex gap-4 mt-3">
+    <Box className="ml-0 md:ml-[380px]">
+      <Box component="p" className="w-fit mx-auto text-3xl pt-4 font-bold" sx={{color: hues.text}}>Personal projects</Box>
+      <Box className="px-4 pb-8 pt-2 flex flex-col lg:flex-row gap-4 mt-3">
         {
           tweakedRepositories.map((repos, i) =>
             <Box key={i} className="basis-1/2 flex flex-col gap-4">
@@ -26,13 +26,14 @@ export default async function MainContent() {
           )
         }
       </Box>
+      <Footer className="block md:hidden w-fit mx-auto"/>
     </Box>
   )
 }
 
 function Tile(props: { repository: Repository}) {
   return (
-    <Card className="h-fit p-2 border-0 rounded-xl" sx={{backgroundColor: hues["bg-secondary"]}}>
+    <Card className="h-fit p-2 border-0 rounded-xl w-full" sx={{backgroundColor: hues["bg-secondary"]}}>
       <CardHeader
         title={<Box sx={{color: hues.text}}>{formatTitle(props.repository.name)}</Box>}
         subheader={<Box sx={{color: hues["text-secondary"]}}>{props.repository.description}</Box>}/>

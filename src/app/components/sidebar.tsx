@@ -2,7 +2,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import { Avatar, Box, Chip } from "@mui/material"
-import { LinkButton, Svg } from './collection';
+import { Footer, LinkButton, Svg } from './collection';
 import { hues } from '@/tools';
 import { ReactNode } from 'react';
 
@@ -18,7 +18,7 @@ export default function Sidebar() {
 
 function SidebarContainer({ children }: { children: ReactNode}) {
   return (
-    <Box component="div" className="h-full w-[380px] fixed top-0 left-0">
+    <Box component="div" className="h-full w-full md:w-[380px] relative md:fixed top-0 left-0">
       <Box className="scrollbar pt-4 flex flex-col justify-between gap-0 h-full pl-2 overflow-auto">
         {children}
       </Box>
@@ -66,7 +66,7 @@ function SidebarSkills() {
 
 function SidebarFooter() {
   return (
-    <Box component="div" className="pb-1 text-center">
+    <Box component="div" className="pb-0 mt-5 mb-5 md:pb-1 md:mt-0 md:mb-0 text-center">
       <Box component="div" className="w-fit mx-auto">
         <Box component="span" className="w-fit">
           <LinkButton href="https://linkedin.com/in/neemias-santos-68a348186" title="LinkedIn">
@@ -81,7 +81,7 @@ function SidebarFooter() {
           icon={<EmailIcon/>} label="neemiassgc@outlook.com" variant="filled" className="ml-3"
         />
       </Box>
-      <Box component="p">{"Made with </> by "}{<Box component="span" className="font-bold">Neemias Santos</Box>}</Box>
+      <Footer className="hidden md:block"/>
     </Box>
   )
 }

@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps, Tooltip, IconButton } from "@mui/material";
+import { SvgIcon, SvgIconProps, Tooltip, IconButton, Box } from "@mui/material";
 import SpringBootSvg from "../assets/spring-boot.svg";
 import JavaSvg from "../assets/java.svg";
 import GoogleCloudSvg from "../assets/google-cloud.svg";
@@ -82,3 +82,13 @@ export function LinkButton(props: {
   )
 }
 
+export function Footer({ className = "" }: { className?: string }) {
+  return (
+    <Box component="p" className={className}>
+      {"Made with </> by "}
+      {
+        <Box component="span" className="font-bold">Neemias Santos</Box>
+      }
+    </Box>
+  )
+}
