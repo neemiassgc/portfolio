@@ -1,4 +1,4 @@
-import { Box, Card, CardActions, CardContent, CardHeader, Chip } from "@mui/material"
+import { Box, Card, CardActions, CardContent, CardHeader, Chip, Divider } from "@mui/material"
 import { Repository } from "@/types";
 import { findTechStackNames, formatTitle, tweakRepositoriesByTopics } from "@/tools";
 import { Svg, LinkButton, Footer } from "./collection";
@@ -14,7 +14,9 @@ export default async function MainContent() {
 
   return (
     <Box className="ml-0 md:ml-[380px]">
-      <Box component="p" className="w-fit mx-auto text-3xl pt-4 font-bold text-hues-primary font-core">Personal projects</Box>
+      <Box component="p" className="w-full text-3xl pt-4 font-bold text-hues-primary font-core text-center">
+        Personal Projects 
+      </Box>
       <Box className="px-4 pb-8 pt-2 flex flex-col lg:flex-row gap-4 mt-3">
         {
           tweakedRepositories.map((repos, i) =>
@@ -26,7 +28,7 @@ export default async function MainContent() {
           )
         }
       </Box>
-      <Footer className="block md:hidden w-fit mx-auto"/>
+      <Footer className="w-fit mx-auto"/>
     </Box>
   )
 }
