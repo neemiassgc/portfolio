@@ -1,6 +1,6 @@
 import { SiLinkedin, SiGithub } from "react-icons/si";
 import { MdEmail } from "react-icons/md";
-import { LinkButton, Svg, Chip } from './collection';
+import { LinkButton, findIconByName, Chip } from './collection';
 import { ReactNode } from 'react';
 import Image from 'next/image';
 
@@ -65,8 +65,7 @@ function SidebarSkills() {
       </div>
       <div className="flex flex-wrap justify-center gap-7">
       {
-        skills.map((item, index) =>
-          <Svg className="text-4xl" key={index} title={item} iconName={item.toLocaleLowerCase()}/>)
+        skills.map(item => findIconByName(item.toLocaleLowerCase()))
       }
       </div>
     </div>

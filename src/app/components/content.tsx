@@ -1,6 +1,6 @@
 import { Repository } from "@/types";
 import { findTechStackNames, formatTitle, tweakRepositoriesByTopics } from "@/tools";
-import { Svg, LinkButton, Footer, Chip } from "./collection";
+import { LinkButton, Footer, Chip, findIconByName } from "./collection";
 import { getRepositories } from "@/net";
 import { SiGithub } from "react-icons/si";
 import { MdGpsFixed } from "react-icons/md";
@@ -71,12 +71,8 @@ function Tile(props: { repository: Repository}) {
           </div>
           <div className="flex items-center w-fit gap-1">
             {
-              findTechStackNames(props.repository.topics).map((topic, index) => (
-                topic &&
-                <Svg
-                  title={formatTitle(topic)}
-                  iconName={topic} key={index}
-                />
+              findTechStackNames(props.repository.topics).map((topic) => (
+                topic && findIconByName(topic, "small")
               ))
             }
           </div>

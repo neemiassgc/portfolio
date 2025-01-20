@@ -1,64 +1,59 @@
-import SpringBootSvg from "../assets/spring-boot.svg";
-import JavaSvg from "../assets/java.svg";
-import GoogleCloudSvg from "../assets/google-cloud.svg";
-import Aws from "../assets/aws.svg";
-import Css3 from "../assets/css3.svg";
-import Html5 from "../assets/html5.svg";
-import Javascript from "../assets/javascript.svg";
-import React from "../assets/react.svg";
-import Typescript from "../assets/typescript.svg";
-import NextJs from "../assets/next-js.svg";
-import Vercel from "../assets/vercel.svg";
-import Ruby from "../assets/ruby.svg";
-import TailwindCss from "../assets/tailwind-css.svg";
-import Firebase from "../assets/firebase.svg";
-import Docker from "../assets/docker.svg";
-import Hibernate from "../assets/hibernate.svg";
-import Html from "../assets/html5.svg";
-import Css from "../assets/css3.svg";
-import Spring from "../assets/spring.svg";
-import SpringSecurity from "../assets/spring-security.svg";
-import Git from "../assets/git.svg";
-import Linux from "../assets/linux.svg";
-import Kotlin from "../assets/kotlin.svg";
-import Postgres from "../assets/postgresql.svg";
-import Supabase from "../assets/supabase.svg";
+import { SiSpringboot } from "react-icons/si";
+import { FaJava } from "react-icons/fa";
+import { SiGooglecloud } from "react-icons/si";
+import { FaAws } from "react-icons/fa6";
+import { SiJavascript } from "react-icons/si";
+import { SiReact } from "react-icons/si";
+import { SiTypescript } from "react-icons/si";
+import { SiNextdotjs } from "react-icons/si";
+import { SiVercel } from "react-icons/si";
+import { SiRuby } from "react-icons/si";
+import { SiTailwindcss } from "react-icons/si";
+import { SiFirebase } from "react-icons/si";
+import { SiDocker } from "react-icons/si";
+import { SiHibernate } from "react-icons/si";
+import { SiHtml5 } from "react-icons/si";
+import { SiCss3 } from "react-icons/si";
+import { SiSpring } from "react-icons/si";
+import { SiSpringsecurity } from "react-icons/si";
+import { SiGit } from "react-icons/si";
+import { SiLinux } from "react-icons/si";
+import { SiKotlin } from "react-icons/si";
+import { SiPostgresql } from "react-icons/si";
+import { SiSupabase } from "react-icons/si";
 import { FaCircle } from "react-icons/fa6";
 import Link from "next/link";
 import { ReactNode } from "react"
 
-export function Svg({title, iconName}:
-  { title: string, iconName: string, className?: string }
-) {
-  const importedIcons: {[key: string]: ReactNode} = {
-    "java": <JavaSvg className="w-8 h-8"/>,
-    "spring-boot": <SpringBootSvg className="w-8 h-8"/>,
-    "google-cloud": <GoogleCloudSvg className="w-8 h-8"/>,
-    "aws": <Aws className="w-8 h-8"/>,
-    "css3": <Css3 className="w-8 h-8"/>,
-    "html5": <Html5 className="w-8 h-8"/>,
-    "javascript": <Javascript className="w-8 h-8"/>,
-    "react": <React className="w-8 h-8"/>,
-    "typescript": <Typescript className="w-8 h-8"/>,
-    "nextjs": <NextJs className="w-8 h-8"/>,
-    "vercel": <Vercel className="w-8 h-8"/>,
-    "ruby": <Ruby className="w-8 h-8"/>,
-    "tailwind-css": <TailwindCss className="w-8 h-8"/>,
-    "docker": <Docker className="w-8 h-8"/>,
-    "hibernate": <Hibernate className="w-8 h-8"/>,
-    "firebase": <Firebase className="w-8 h-8"/>,
-    "html": <Html className="w-8 h-8"/>,
-    "css": <Css className="w-8 h-8"/>,
-    "spring": <Spring className="w-8 h-8"/>,
-    "spring-security": <SpringSecurity className="w-8 h-8"/>,
-    "git": <Git className="w-8 h-8"/>,
-    "linux": <Linux className="w-8 h-8"/>,
-    "kotlin": <Kotlin className="w-8 h-8"/>,
-    "postgres": <Postgres className="w-8 h-8"/>,
-    "supabase": <Supabase className="w-8 h-8"/>
+export function findIconByName(iconName: string, iconSize: "small" | "medium" = "medium"): ReactNode {
+  const size: string = {small: "w-6 h-6", medium: "w-8 h-8"}[iconSize]
+  const iconList: {[key: string]: ReactNode} = {
+    "java": <FaJava className={size} style={{color: "#000000"}} />,
+    "spring-boot": <SiSpringboot className={size} style={{color: "#6DB33F"}}/>,
+    "google-cloud": <SiGooglecloud className={size} style={{color: "#4285F4"}}/>,
+    "aws": <FaAws className={size} style={{color: "#232F3E"}}/>,
+    "css": <SiCss3 className={size} style={{color: "#1572B6"}}/>,
+    "html": <SiHtml5 className={size} style={{color: "#E34F26"}}/>,
+    "javascript": <SiJavascript className={size} style={{color: "#F7DF1E"}}/>,
+    "react": <SiReact className={size} style={{color: "#61DAFB"}}/>,
+    "typescript": <SiTypescript className={size} style={{color: "#3178C6"}}/>,
+    "nextjs": <SiNextdotjs className={size} style={{color: "#000000"}}/>,
+    "vercel": <SiVercel className={size} style={{color: "#000000"}}/>,
+    "ruby": <SiRuby className={size} style={{color: "#CC342D"}}/>,
+    "tailwind-css": <SiTailwindcss className={size} style={{color: "#06B6D4"}}/>,
+    "docker": <SiDocker className={size} style={{color: "#2496ED"}}/>,
+    "hibernate": <SiHibernate className={size} style={{color: "#59666C"}}/>,
+    "firebase": <SiFirebase className={size} style={{color: "#DD2C00"}}/>,
+    "spring": <SiSpring className={size} style={{color: "#6DB33F"}}/>,
+    "spring-security": <SiSpringsecurity className={size} style={{color: "#6DB33F"}}/>,
+    "git": <SiGit className={size} style={{color: "#F05032"}}/>,
+    "linux": <SiLinux className={size} style={{color: "#FCC624"}}/>,
+    "kotlin": <SiKotlin className={size} style={{color: "#7F52FF"}}/>,
+    "postgres": <SiPostgresql className={size} style={{color: "#4169E1"}}/>,
+    "supabase": <SiSupabase className={size} style={{color: "#3FCF8E"}}/>
   }
 
-  return  importedIcons[iconName] ?? <FaCircle/>
+  return iconList[iconName] ?? <FaCircle/>
 }
 
 export function LinkButton(props: {
