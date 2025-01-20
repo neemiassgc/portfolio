@@ -1,4 +1,3 @@
-import { SvgIcon, SvgIconProps, Tooltip, IconButton, Box } from "@mui/material";
 import SpringBootSvg from "../assets/spring-boot.svg";
 import JavaSvg from "../assets/java.svg";
 import GoogleCloudSvg from "../assets/google-cloud.svg";
@@ -24,71 +23,80 @@ import Linux from "../assets/linux.svg";
 import Kotlin from "../assets/kotlin.svg";
 import Postgres from "../assets/postgresql.svg";
 import Supabase from "../assets/supabase.svg";
-import CircleIcon from "@mui/icons-material/Circle"
+import { FaCircle } from "react-icons/fa6";
 import Link from "next/link";
 import { ReactNode } from "react"
 
-export function Svg({title, iconName, ...svgIconProps}:
-  SvgIconProps & { title: string, iconName: string }
+export function Svg({title, iconName}:
+  { title: string, iconName: string, className?: string }
 ) {
   const importedIcons: {[key: string]: ReactNode} = {
-    "java": <JavaSvg/>,
-    "spring-boot": <SpringBootSvg/>,
-    "google-cloud": <GoogleCloudSvg/>,
-    "aws": <Aws/>,
-    "css3": <Css3/>,
-    "html5": <Html5/>,
-    "javascript": <Javascript/>,
-    "react": <React/>,
-    "typescript": <Typescript/>,
-    "nextjs": <NextJs/>,
-    "vercel": <Vercel/>,
-    "ruby": <Ruby/>,
-    "tailwind-css": <TailwindCss/>,
-    "docker": <Docker/>,
-    "hibernate": <Hibernate/>,
-    "firebase": <Firebase/>,
-    "html": <Html/>,
-    "css": <Css/>,
-    "spring": <Spring/>,
-    "spring-security": <SpringSecurity/>,
-    "git": <Git/>,
-    "linux": <Linux/>,
-    "kotlin": <Kotlin/>,
-    "postgres": <Postgres/>,
-    "supabase": <Supabase/>
+    "java": <JavaSvg className="w-8 h-8"/>,
+    "spring-boot": <SpringBootSvg className="w-8 h-8"/>,
+    "google-cloud": <GoogleCloudSvg className="w-8 h-8"/>,
+    "aws": <Aws className="w-8 h-8"/>,
+    "css3": <Css3 className="w-8 h-8"/>,
+    "html5": <Html5 className="w-8 h-8"/>,
+    "javascript": <Javascript className="w-8 h-8"/>,
+    "react": <React className="w-8 h-8"/>,
+    "typescript": <Typescript className="w-8 h-8"/>,
+    "nextjs": <NextJs className="w-8 h-8"/>,
+    "vercel": <Vercel className="w-8 h-8"/>,
+    "ruby": <Ruby className="w-8 h-8"/>,
+    "tailwind-css": <TailwindCss className="w-8 h-8"/>,
+    "docker": <Docker className="w-8 h-8"/>,
+    "hibernate": <Hibernate className="w-8 h-8"/>,
+    "firebase": <Firebase className="w-8 h-8"/>,
+    "html": <Html className="w-8 h-8"/>,
+    "css": <Css className="w-8 h-8"/>,
+    "spring": <Spring className="w-8 h-8"/>,
+    "spring-security": <SpringSecurity className="w-8 h-8"/>,
+    "git": <Git className="w-8 h-8"/>,
+    "linux": <Linux className="w-8 h-8"/>,
+    "kotlin": <Kotlin className="w-8 h-8"/>,
+    "postgres": <Postgres className="w-8 h-8"/>,
+    "supabase": <Supabase className="w-8 h-8"/>
   }
 
-  return (
-    <Tooltip title={title} arrow>
-      <SvgIcon {...svgIconProps} className={svgIconProps.className+" cursor-pointer"} inheritViewBox>
-        {importedIcons[iconName] ?? <CircleIcon/>}
-      </SvgIcon>
-    </Tooltip>
-  )
+  return  importedIcons[iconName] ?? <FaCircle/>
 }
 
 export function LinkButton(props: {
   title: string, href: string, children?: ReactNode
 }) {
   return (
-    <Tooltip title={props.title}>
-      <Link target="_blank" href={props.href}>
-        <IconButton>
-          {props.children}
-        </IconButton>
-      </Link>
-    </Tooltip>
+    <Link target="_blank" href={props.href}>
+      <IconButton>
+        {props.children}
+      </IconButton>
+    </Link>
   )
 }
 
 export function Footer({ className = "" }: { className?: string }) {
   return (
-    <Box component="p" className={className}>
+    <p className={className}>
       {"Made with </> by "}
       {
-        <Box component="span" className="font-bold">Neemias Santos</Box>
+        <span className="font-bold">Neemias Santos</span>
       }
-    </Box>
+    </p>
+  )
+}
+
+function IconButton(props: { children: ReactNode}) {
+  return (
+    <button type="button" className="rounded-full p-2.5">
+      {props.children}
+    </button>
+  )
+}
+
+export function Chip(props: { className: string, label: string, variant: "filled" | "outlined", icon?: ReactNode}) {
+  return (
+    <div className={`w-fit px-3 py-1 rounded-3xl flex items-center justify-between gap-2 ${props.className}`}>
+      { props.icon }
+      <span className="inline">{ props.label }</span>
+    </div>
   )
 }

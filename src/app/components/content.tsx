@@ -1,11 +1,11 @@
-import { Box, Card, CardActions, CardContent, CardHeader, Chip, Divider } from "@mui/material"
 import { Repository } from "@/types";
 import { findTechStackNames, formatTitle, tweakRepositoriesByTopics } from "@/tools";
-import { Svg, LinkButton, Footer } from "./collection";
+import { Svg, LinkButton, Footer, Chip } from "./collection";
 import { getRepositories } from "@/net";
-import GitHubIcon from '@mui/icons-material/GitHub';
-import GpsFixedIcon from '@mui/icons-material/GpsFixed';
-import DocsIcon from '@mui/icons-material/Article';
+import { SiGithub } from "react-icons/si";
+import { MdGpsFixed } from "react-icons/md";
+import { IoDocumentText } from "react-icons/io5"
+import React, { ReactNode } from "react";
 
 export default async function MainContent() {
 
@@ -13,72 +13,97 @@ export default async function MainContent() {
   const tweakedRepositories: Repository[][] = tweakRepositoriesByTopics(repositories);
 
   return (
-    <Box className="ml-0 md:ml-[380px]">
-      <Box component="p" className="w-full text-3xl pt-4 font-bold text-hues-primary font-core text-center">
+    <div className="ml-0 md:ml-[380px]">
+      <p className="w-full text-3xl pt-4 font-bold text-hues-primary font-core text-center">
         Personal Projects 
-      </Box>
-      <Box className="px-4 pb-8 pt-2 flex flex-col lg:flex-row gap-4 mt-3">
+      </p>
+      <div className="px-4 pb-8 pt-2 flex flex-col lg:flex-row gap-2 xl:gap-6 mt-3">
         {
           tweakedRepositories.map((repos, i) =>
-            <Box key={i} className="basis-1/2 flex flex-col gap-4">
+            <div key={i} className="basis-1/2 flex flex-col gap-6">
               {
                 repos.map((repo, j) => <Tile key={j} repository={repo}/>)
               }  
-            </Box>
+            </div>
           )
         }
-      </Box>
+      </div>
       <Footer className="w-fit mx-auto"/>
-    </Box>
+    </div>
   )
 }
 
 function Tile(props: { repository: Repository}) {
   return (
-    <Card className="h-fit p-2 border-0 rounded-xl w-full bg-hues-secondary">
-      <CardHeader
-        title={<Box className="text-hues-primary font-core font-bold">{formatTitle(props.repository.name)}</Box>}
-        subheader={<Box className="text-hues-secondary font-core">{props.repository.description}</Box>}/>
-        <CardContent className="flex flex-wrap justify-start gap-2">
-        {
-          props.repository.topics.map((item, index) =>
-            (<Chip
-              className="bg-hues-primary text-hues-primary font-bold font-core"
-              variant="filled" size="medium" label={item} key={index} />))
-        }
-        </CardContent>
-      <CardActions disableSpacing className="flex justify-between">
-        <Box>
+    <Card
+      title={formatTitle(props.repository.name)}
+      subtitle={props.repository.description}
+      content={
+        <div className="flex flex-wrap justify-start gap-2">
           {
-            props.repository.liveDemoLink &&
-            <LinkButton title="Live Demo" href={props.repository.liveDemoLink}>
-              <GpsFixedIcon className="text-3xl text-hues-highlight"/>  
-            </LinkButton>
+            props.repository.topics.map((item, index) =>
+              <Chip
+                className="bg-hues-primary text-hues-primary font-bold font-core"
+                variant="filled" label={item} key={index} />)
           }
-          {
-            props.repository.docsLink &&
-            <LinkButton title="Docs" href={props.repository.docsLink}>
-              <DocsIcon className="text-3xl text-hues-secondary"/>
-            </LinkButton>
-          }
-          {
-            <LinkButton title="GitHub" href={props.repository.githubLink}>
-              <GitHubIcon className="text-3xl text-hues-secondary"/>
-            </LinkButton>
-          }
-        </Box>
-        <Box component="span">
-          {
-            findTechStackNames(props.repository.topics).map((topic, index) => (
-              topic &&
-              <Svg
-                title={formatTitle(topic)}
-                iconName={topic} className="mr-1" key={index}
-              />
-            ))
-          }
-        </Box>
-      </CardActions>
-  </Card>
+        </div>
+      }
+      footer={
+        <div className="flex justify-between">
+          <div className="flex">
+            {
+              props.repository.liveDemoLink &&
+              <LinkButton title="Live Demo" href={props.repository.liveDemoLink}>
+                <MdGpsFixed className="text-3xl text-hues-highlight bg-"/>  
+              </LinkButton>
+            }
+            {
+              props.repository.docsLink &&
+              <LinkButton title="Docs" href={props.repository.docsLink}>
+                <IoDocumentText className="text-3xl text-hues-secondary"/>
+              </LinkButton>
+            }
+            {
+              <LinkButton title="GitHub" href={props.repository.githubLink}>
+                <SiGithub className="text-3xl text-hues-secondary"/>
+              </LinkButton>
+            }
+          </div>
+          <div className="flex items-center w-fit gap-1">
+            {
+              findTechStackNames(props.repository.topics).map((topic, index) => (
+                topic &&
+                <Svg
+                  title={formatTitle(topic)}
+                  iconName={topic} key={index}
+                />
+              ))
+            }
+          </div>
+        </div>
+      }
+    />
+  )
+}
+
+function Card(props: {
+  title: string,
+  subtitle: string,
+  content: ReactNode,
+  footer: ReactNode
+}) {
+  return (
+    <div className="shadow-md h-fit pb-1 pt-3 px-5 border-0 rounded-xl w-full bg-hues-secondary flex flex-col gap-6">
+      <div>
+        <div className="text-hues-primary font-core font-bold text-2xl">{formatTitle(props.title)}</div>
+        <div className="text-hues-secondary font-core">{props.subtitle}</div>
+      </div>
+      <>
+        {props.content}
+      </>
+      <>
+        {props.footer}
+      </>
+    </div>
   )
 }
