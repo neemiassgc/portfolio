@@ -1,20 +1,15 @@
 import { Button } from "@/ui/components/Button";
 import { TextArea } from "@/ui/components/TextArea";
 import { TextField } from "@/ui/components/TextField";
+import Header from "./Header";
 
 export default function ConnectSegment() {
   return (
     <div className="flex w-full max-w-[1280px] grow shrink-0 basis-0 flex-col items-center gap-16">
-      <div className="flex w-full flex-col items-start gap-4">
-        <span className="text-caption font-caption text-brand-600">CONTACT</span>
-        <span className="text-heading-1 font-heading-1 text-default-font">
-          Let&#39;s Connect
-        </span>
-        <span className="text-body font-body text-subtext-color">
-          I&#39;m always interested in hearing about new opportunities,
-          collaborations, and exciting projects.
-        </span>
-      </div>
+      <Header sectionName="CONNECT" title="Let's Connect">
+        I&#39;m always interested in hearing about new opportunities,
+        collaborations, and exciting projects.
+      </Header>
       <div className="flex w-full grow shrink-0 basis-0 flex-col items-start gap-6">
         <div className="flex w-full flex-col items-start gap-2">
           <span className="text-heading-3 font-heading-3 text-default-font">

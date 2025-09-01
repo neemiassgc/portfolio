@@ -2,23 +2,15 @@ import { Variant } from "@/types";
 import { Badge } from "@/ui/components/Badge";
 import { IconWithBackground } from "@/ui/components/IconWithBackground";
 import { IconName } from "@subframe/core";
-import { Icon } from "next/dist/lib/metadata/types/metadata-types";
+import Header from "./Header";
 
 export default function TechnicalSegment() {
   return (
     <div className="flex w-full max-w-[1280px] flex-col items-start gap-8">
-      <div className="flex flex-col items-start gap-4">
-        <span className="text-caption font-caption text-brand-600">
-          SKILLS &amp; EXPERTISE
-        </span>
-        <span className="text-heading-1 font-heading-1 text-default-font">
-          Technical Proficiencies
-        </span>
-        <span className="text-heading-2 font-heading-2 text-subtext-color">
+      <Header sectionName="SKILLS & EXPERTISE" title="Technical Proficiencies">
           A comprehensive overview of my technical skills and expertise
           across different domains
-        </span>
-      </div>
+      </Header>
       <div className="flex w-full flex-col items-start gap-8">
         <BadgeSet
           title={{

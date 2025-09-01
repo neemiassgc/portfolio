@@ -2,24 +2,17 @@ import { empty } from "@/tools";
 import { Button } from "@/ui/components/Button";
 import { IconButton } from "@/ui/components/IconButton";
 import SubframeCore, { IconName } from "@subframe/core";
+import Header from "./Header";
 
 export default function Hero() {
   return (
     <div className="flex w-full max-w-[1280px] flex-wrap items-center justify-between">
       <div className="flex grow shrink-0 basis-0 flex-col items-start gap-8">
-        <div className="flex flex-col items-start gap-4">
-          <span className="text-caption font-caption text-brand-600">
-            PORTFOLIO
-          </span>
-          <span className="text-heading-1 font-heading-1 text-default-font">
-            Hi, I&#39;m Filip Ginzberg
-          </span>
-          <span className="text-heading-2 font-heading-2 text-subtext-color">
-            Senior Product Designer crafting intuitive digital experiences
-            with a focus on user-centered design and technological
-            innovation.
-          </span>
-        </div>
+        <Header sectionName="PORTFOLIO" title="Hi, I'm Filip Ginzberg">
+          Senior Product Designer crafting intuitive digital experiences
+          with a focus on user-centered design and technological
+          innovation.
+        </Header>
         <div className="flex flex-col items-start gap-4">
           <AboutMe iconName="FeatherMail" text="filip.ginzberg@example.com" />
           <AboutMe iconName="FeatherMapPin" text="San Francisco, CA" />

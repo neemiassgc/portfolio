@@ -1,21 +1,14 @@
 import { Badge } from "@/ui/components/Badge";
 import { Button } from "@/ui/components/Button";
 import { ToggleGroup } from "@/ui/components/ToggleGroup";
+import Header from "./Header";
 
 export default function ProjectSegment() {
   return (
     <div className="flex w-full max-w-[1280px] flex-col items-start gap-8">
-      <div className="flex w-full flex-col items-start gap-4">
-        <span className="text-caption font-caption text-brand-600">
-          PORTFOLIO PROJECTS
-        </span>
-        <span className="text-heading-1 font-heading-1 text-default-font">
-          Projects
-        </span>
-        <span className="text-body font-body text-subtext-color">
-          Explore my technical projects and open source contributions
-        </span>
-      </div>
+      <Header sectionName="PORTFOLIO PROJECTS" title="Projects">
+        Explore my technical projects and open source contributions
+      </Header>
       <div className="flex w-full items-center gap-4">
         <div className="flex w-full items-center gap-4">
           <ToggleGroup value="" onValueChange={(value: string) => {}}>
