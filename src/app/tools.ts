@@ -72,3 +72,5 @@ function findIconNameByTopic(iconNames: string[], topics: string[]): string | un
 function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+export const empty: () => void = () => {};
