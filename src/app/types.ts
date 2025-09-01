@@ -15,3 +15,5 @@ export type Repository = BasicProps & {
   docsLink?: string,
   githubLink: string,
 }
+
+export type Variant = "brand" | "neutral" | "error" | "success" | "warning";
