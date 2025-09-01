@@ -3,79 +3,19 @@
 import React from "react";
 import { Badge } from "@/ui/components/Badge";
 import { Button } from "@/ui/components/Button";
-import { IconButton } from "@/ui/components/IconButton";
 import { IconWithBackground } from "@/ui/components/IconWithBackground";
 import { TextArea } from "@/ui/components/TextArea";
 import { TextField } from "@/ui/components/TextField";
 import { ToggleGroup } from "@/ui/components/ToggleGroup";
 import { DefaultPageLayout } from "@/ui/layouts/DefaultPageLayout";
-import * as SubframeCore from "@subframe/core";
+import Hero from "./components/Hero";
 
-function LandingPagePortifolio() {
+function LandingPage() {
   return (
     <DefaultPageLayout>
       <div className="flex h-full w-full flex-col items-start overflow-auto">
         <div className="flex w-full flex-col items-center gap-16 px-8 py-16">
-          <div className="flex w-full max-w-[1280px] flex-wrap items-center justify-between">
-            <div className="flex grow shrink-0 basis-0 flex-col items-start gap-8">
-              <div className="flex flex-col items-start gap-4">
-                <span className="text-caption font-caption text-brand-600">
-                  PORTFOLIO
-                </span>
-                <span className="text-heading-1 font-heading-1 text-default-font">
-                  Hi, I&#39;m Filip Ginzberg
-                </span>
-                <span className="text-heading-2 font-heading-2 text-subtext-color">
-                  Senior Product Designer crafting intuitive digital experiences
-                  with a focus on user-centered design and technological
-                  innovation.
-                </span>
-              </div>
-              <div className="flex flex-col items-start gap-4">
-                <div className="flex items-center gap-2">
-                  <SubframeCore.Icon
-                    className="text-heading-2 font-heading-2 text-default-font"
-                    name="FeatherMail"
-                  />
-                  <span className="text-body font-body text-default-font">
-                    filip.ginzberg@example.com
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <SubframeCore.Icon
-                    className="text-heading-2 font-heading-2 text-default-font"
-                    name="FeatherMapPin"
-                  />
-                  <span className="text-body font-body text-default-font">
-                    San Francisco, CA
-                  </span>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <Button
-                  size="large"
-                  icon="FeatherMail"
-                  onClick={(event: React.MouseEvent<HTMLButtonElement>) => {}}
-                >
-                  Get in touch
-                </Button>
-                <Button
-                  variant="neutral-secondary"
-                  size="large"
-                  icon="FeatherDownload"
-                  onClick={(event: React.MouseEvent<HTMLButtonElement>) => {}}
-                >
-                  Download Resume
-                </Button>
-              </div>
-            </div>
-            <div className="flex h-96 w-96 flex-none items-center justify-center overflow-hidden rounded-full bg-brand-100">
-              <img
-                className="h-96 w-96 flex-none object-cover"
-                src="https://images.unsplash.com/photo-1508214751196-bcfd4f24e2f0?q=80&w=2070&auto=format&fit=crop"
-              />
-            </div>
-          </div>
+          <Hero/>
           <div className="flex w-full max-w-[1280px] flex-col items-start gap-8">
             <div className="flex flex-col items-start gap-4">
               <span className="text-caption font-caption text-brand-600">
@@ -437,26 +377,6 @@ function LandingPagePortifolio() {
                   >
                     Send Message
                   </Button>
-                  <div className="flex items-center gap-2">
-                    <IconButton
-                      icon="FeatherLinkedin"
-                      onClick={(
-                        event: React.MouseEvent<HTMLButtonElement>
-                      ) => {}}
-                    />
-                    <IconButton
-                      icon="FeatherGithub"
-                      onClick={(
-                        event: React.MouseEvent<HTMLButtonElement>
-                      ) => {}}
-                    />
-                    <IconButton
-                      icon="FeatherTwitter"
-                      onClick={(
-                        event: React.MouseEvent<HTMLButtonElement>
-                      ) => {}}
-                    />
-                  </div>
                 </div>
               </div>
             </div>
@@ -473,4 +393,4 @@ function LandingPagePortifolio() {
   );
 }
 
-export default LandingPagePortifolio;
+export default LandingPage;
