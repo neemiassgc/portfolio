@@ -3,12 +3,12 @@
 import React from "react";
 import { Badge } from "@/ui/components/Badge";
 import { Button } from "@/ui/components/Button";
-import { IconWithBackground } from "@/ui/components/IconWithBackground";
 import { TextArea } from "@/ui/components/TextArea";
 import { TextField } from "@/ui/components/TextField";
 import { ToggleGroup } from "@/ui/components/ToggleGroup";
 import { DefaultPageLayout } from "@/ui/layouts/DefaultPageLayout";
 import Hero from "./components/Hero";
+import TechnicalSection from "./components/TechnicalSection";
 
 function LandingPage() {
   return (
@@ -16,156 +16,7 @@ function LandingPage() {
       <div className="flex h-full w-full flex-col items-start overflow-auto">
         <div className="flex w-full flex-col items-center gap-16 px-8 py-16">
           <Hero/>
-          <div className="flex w-full max-w-[1280px] flex-col items-start gap-8">
-            <div className="flex flex-col items-start gap-4">
-              <span className="text-caption font-caption text-brand-600">
-                SKILLS &amp; EXPERTISE
-              </span>
-              <span className="text-heading-1 font-heading-1 text-default-font">
-                Technical Proficiencies
-              </span>
-              <span className="text-heading-2 font-heading-2 text-subtext-color">
-                A comprehensive overview of my technical skills and expertise
-                across different domains
-              </span>
-            </div>
-            <div className="flex w-full flex-col items-start gap-8">
-              <div className="flex w-full flex-col items-start gap-4">
-                <div className="flex items-center gap-2">
-                  <IconWithBackground size="medium" icon="FeatherServer" />
-                  <span className="text-heading-2 font-heading-2 text-default-font">
-                    Backend Development
-                  </span>
-                </div>
-                <div className="flex flex-wrap items-start gap-2">
-                  <Badge variant="neutral" icon="FeatherCode">
-                    Java
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherCode">
-                    Spring Boot
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherCode">
-                    Python
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherCode">
-                    Node.js
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherCode">
-                    REST APIs
-                  </Badge>
-                </div>
-              </div>
-              <div className="flex w-full flex-col items-start gap-4">
-                <div className="flex items-center gap-2">
-                  <IconWithBackground
-                    variant="success"
-                    size="medium"
-                    icon="FeatherLayout"
-                  />
-                  <span className="text-heading-2 font-heading-2 text-default-font">
-                    Frontend Technologies
-                  </span>
-                </div>
-                <div className="flex flex-wrap items-start gap-2">
-                  <Badge variant="neutral" icon="FeatherCode">
-                    HTML5
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherCode">
-                    CSS3
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherCode">
-                    JavaScript
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherCode">
-                    React
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherCode">
-                    TypeScript
-                  </Badge>
-                </div>
-              </div>
-              <div className="flex w-full flex-col items-start gap-4">
-                <div className="flex items-center gap-2">
-                  <IconWithBackground
-                    variant="warning"
-                    size="medium"
-                    icon="FeatherDatabase"
-                  />
-                  <span className="text-heading-2 font-heading-2 text-default-font">
-                    Databases
-                  </span>
-                </div>
-                <div className="flex flex-wrap items-start gap-2">
-                  <Badge variant="neutral" icon="FeatherDatabase">
-                    PostgreSQL
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherDatabase">
-                    MongoDB
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherDatabase">
-                    Redis
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherDatabase">
-                    MySQL
-                  </Badge>
-                </div>
-              </div>
-              <div className="flex w-full flex-col items-start gap-4">
-                <div className="flex items-center gap-2">
-                  <IconWithBackground
-                    variant="error"
-                    size="medium"
-                    icon="FeatherCloud"
-                  />
-                  <span className="text-heading-2 font-heading-2 text-default-font">
-                    DevOps &amp; Tools
-                  </span>
-                </div>
-                <div className="flex flex-wrap items-start gap-2">
-                  <Badge variant="neutral" icon="FeatherTool">
-                    Docker
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherTool">
-                    Kubernetes
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherTool">
-                    AWS
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherTool">
-                    CI/CD
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherTool">
-                    Git
-                  </Badge>
-                </div>
-              </div>
-              <div className="flex w-full flex-col items-start gap-4">
-                <div className="flex items-center gap-2">
-                  <IconWithBackground size="medium" icon="FeatherMonitor" />
-                  <span className="text-heading-2 font-heading-2 text-default-font">
-                    Additional Tools
-                  </span>
-                </div>
-                <div className="flex flex-wrap items-start gap-2">
-                  <Badge variant="neutral" icon="FeatherTool">
-                    Figma
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherTool">
-                    Jira
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherTool">
-                    Slack
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherTool">
-                    Trello
-                  </Badge>
-                  <Badge variant="neutral" icon="FeatherTool">
-                    Asana
-                  </Badge>
-                </div>
-              </div>
-            </div>
-          </div>
+          <TechnicalSection/>
           <div className="flex w-full max-w-[1280px] flex-col items-start gap-8">
             <div className="flex w-full flex-col items-start gap-4">
               <span className="text-heading-1 font-heading-1 text-default-font">
