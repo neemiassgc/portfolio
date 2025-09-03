@@ -57,8 +57,9 @@ const NavItem = React.forwardRef<HTMLDivElement, NavItemProps>(function NavItem(
 });
 
 interface TopbarWithLeftNavRootProps extends React.HTMLAttributes<HTMLElement> {
-  leftSlot?: React.ReactNode;
+  logo?: React.ReactNode;
   rightSlot?: React.ReactNode;
+  centerSlot?: React.ReactNode;
   className?: string;
 }
 
@@ -66,9 +67,10 @@ const TopbarWithLeftNavRoot = React.forwardRef<
   HTMLElement,
   TopbarWithLeftNavRootProps
 >(function TopbarWithLeftNavRoot(
-  { leftSlot, rightSlot, className, ...otherProps }: TopbarWithLeftNavRootProps,
+  { logo, centerSlot, rightSlot, className, ...otherProps }: TopbarWithLeftNavRootProps,
   ref
 ) {
+  const mass = <div className="p-1"></div>;
   return (
     <nav
       className={SubframeUtils.twClassNames(
@@ -78,12 +80,9 @@ const TopbarWithLeftNavRoot = React.forwardRef<
       ref={ref}
       {...otherProps}
     >
-      {leftSlot ? (
-        <div className="flex items-center gap-6">{leftSlot}</div>
-      ) : null}
-      {rightSlot ? (
-        <div className="flex items-center justify-end gap-2">{rightSlot}</div>
-      ) : null}
+      { logo ?? mass }
+      { centerSlot ?? mass }
+      { rightSlot ?? mass }
     </nav>
   );
 });
