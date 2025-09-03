@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import { TopbarWithLeftNav } from "../components/TopbarWithLeftNav";
 import * as SubframeUtils from "../utils";
 import Image from "next/image";
+import { Button } from "../components/Button";
 
 interface DefaultPageLayoutRootProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -43,7 +44,7 @@ const DefaultPageLayoutRoot = React.forwardRef<
     >
       <TopbarWithLeftNav
         logo={
-          <Image src="/folder.svg" width={32} height={32} alt="Logo"/>
+          <Image className="ml-5" src="/folder.svg" width={32} height={32} alt="Logo"/>
         }
         centerSlot={
           <div className="flex items-center gap-2">
@@ -55,6 +56,7 @@ const DefaultPageLayoutRoot = React.forwardRef<
             <TopbarWithLeftNav.NavItem selected={!!selected[3]} onClick={selectItem(3)}>Connect</TopbarWithLeftNav.NavItem>
           </div>
         }
+        rightSlot={<ToggleLangButton/>}
       />
       {children ? (
         <div className="flex w-full grow shrink-0 basis-0 flex-col items-start gap-4 overflow-y-auto bg-default-background">
@@ -66,3 +68,20 @@ const DefaultPageLayoutRoot = React.forwardRef<
 });
 
 export const DefaultPageLayout = DefaultPageLayoutRoot;
+
+function ToggleLangButton() {
+  const [isEnglish, setIsEnglish] = useState(true);
+
+  return (
+    <div className="flex gap-0 mr-5">
+      <Button
+        variant="neutral-secondary"
+        icon="FeatherGlobe"
+        onClick={() => setIsEnglish(!isEnglish)}
+      >
+        {isEnglish ? "En" : "Pt-br"}
+      </Button>
+      <Image className="ml-3" src={`/${isEnglish ? "us" : "br"}.svg`} width={24} height={24} alt="Language"/>
+    </div>
+  )
+}
