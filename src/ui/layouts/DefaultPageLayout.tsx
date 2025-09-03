@@ -7,12 +7,10 @@
  * Topbar with left nav — https://app.subframe.com/library?component=Topbar+with+left+nav_3cac908f-e20b-4c42-a91e-8736a54e8799
  */
 
-import React from "react";
-import * as SubframeCore from "@subframe/core";
-import { Avatar } from "../components/Avatar";
-import { IconButton } from "../components/IconButton";
+import React, { useState } from "react";
 import { TopbarWithLeftNav } from "../components/TopbarWithLeftNav";
 import * as SubframeUtils from "../utils";
+import Image from "next/image";
 
 interface DefaultPageLayoutRootProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -27,6 +25,13 @@ const DefaultPageLayoutRoot = React.forwardRef<
   { children, className, ...otherProps }: DefaultPageLayoutRootProps,
   ref
 ) {
+  const [selected, setSelected] = useState([1, 0, 0, 0]);
+  const selectItem = (index: number) => () => {
+    const newValues = [0, 0, 0, 0];
+    newValues[index] = 1;
+    setSelected(newValues);
+  }
+
   return (
     <div
       className={SubframeUtils.twClassNames(
@@ -37,29 +42,18 @@ const DefaultPageLayoutRoot = React.forwardRef<
       {...otherProps}
     >
       <TopbarWithLeftNav
-        leftSlot={
-          <>
-            <img
-              className="h-6 flex-none object-cover"
-              src="https://res.cloudinary.com/subframe/image/upload/v1711417507/shared/y2rsnhq3mex4auk54aye.png"
-            />
-            <div className="flex items-center gap-2">
-              <TopbarWithLeftNav.NavItem selected={true}>
-                Home
-              </TopbarWithLeftNav.NavItem>
-              <TopbarWithLeftNav.NavItem>Inbox</TopbarWithLeftNav.NavItem>
-              <TopbarWithLeftNav.NavItem>Reports</TopbarWithLeftNav.NavItem>
-            </div>
-          </>
+        logo={
+          <Image src="/folder.svg" width={32} height={32} alt="Logo"/>
         }
-        rightSlot={
-          <>
-            <IconButton icon="FeatherCircleDashed" />
-            <IconButton icon="FeatherCircleDashed" />
-            <Avatar image="https://res.cloudinary.com/subframe/image/upload/v1711417507/shared/fychrij7dzl8wgq2zjq9.avif">
-              A
-            </Avatar>
-          </>
+        centerSlot={
+          <div className="flex items-center gap-2">
+            <TopbarWithLeftNav.NavItem selected={!!selected[0]} onClick={selectItem(0)}>
+              Home
+            </TopbarWithLeftNav.NavItem>
+            <TopbarWithLeftNav.NavItem selected={!!selected[1]} onClick={selectItem(1)}>Skills</TopbarWithLeftNav.NavItem>
+            <TopbarWithLeftNav.NavItem selected={!!selected[2]} onClick={selectItem(2)}>Projects</TopbarWithLeftNav.NavItem>
+            <TopbarWithLeftNav.NavItem selected={!!selected[3]} onClick={selectItem(3)}>Connect</TopbarWithLeftNav.NavItem>
+          </div>
         }
       />
       {children ? (
