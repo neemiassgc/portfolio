@@ -3,6 +3,7 @@ import { Button } from "@/ui/components/Button";
 import { IconButton } from "@/ui/components/IconButton";
 import SubframeCore, { IconName } from "@subframe/core";
 import Header from "./Header";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -50,10 +51,12 @@ export default function Hero() {
         </div>
       </div>
       <div className="flex h-96 w-96 flex-none items-center justify-center overflow-hidden rounded-full bg-brand-100">
-        <img
-          className="h-96 w-96 flex-none object-cover"
-          alt="Filip Ginzberg"
-          src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+        <Image
+          width={112}
+          height={112}
+          src="https://api.dicebear.com/9.x/adventurer/svg?seed=Mary"
+          alt="avatar"
+          className="h-112 w-112 flex-none object-cover"
         />
       </div>
     </div>
