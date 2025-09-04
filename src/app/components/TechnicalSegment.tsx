@@ -20,7 +20,7 @@ export default function TechnicalSegment() {
           }}
           badges={{
             iconName: "FeatherCode",
-            items: ["Java", "Spring Boot", "Python", "Node.js", "REST APIs"]
+            items: ["Java", "Spring Boot", "Hibernate", "REST APIs", "Json"]
           }}
         />
         <BadgeSet
@@ -31,29 +31,29 @@ export default function TechnicalSegment() {
           }}
           badges={{
             iconName: "FeatherCode",
-            items: ["HTML5", "CSS3", "JavaScript", "React", "TypeScript"]
+            items: ["HTML5", "CSS3", "JavaScript", "React", "TypeScript", "Next.js", "Tailwind CSS", "Subframe", "Vercel", "Auth0"]
           }}
         />
         <BadgeSet
           title={{
-            text: "Databases",
+            text: "Databases & Cloud",
             iconName: "FeatherDatabase",
             variant: "warning"
           }}
           badges={{
             iconName: "FeatherDatabase",
-            items: ["PostgreSQL", "MongoDB", "Redis", "MySQL"]
+            items: ["PostgreSQL", "Supabase", "Firebase", "AWS S3", "Google App Engine"]
           }}
         />
         <BadgeSet
           title={{
-            text: "DevOps & Tools",
+            text: "Tools",
             iconName: "FeatherMonitor",
             variant: "error"
           }}
           badges={{
             iconName: "FeatherTool",
-            items: ["Docker", "Kubernetes", "AWS", "CI/CD", "Git"]
+            items: ["Docker", "Git", "VS Code", "Linux", "IntelliJ IDEA", "Notion", "Insomnia"]
           }}
         />
       </div>
