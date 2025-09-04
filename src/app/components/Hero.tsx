@@ -6,7 +6,7 @@ import Header from "./Header";
 
 export default function Hero() {
   return (
-    <div className="flex w-full max-w-[1280px] flex-wrap items-center justify-between">
+    <div className="flex w-full max-w-[1280px] flex-wrap items-center justify-between" id="home">
       <div className="flex grow shrink-0 basis-0 flex-col items-start gap-8">
         <Header sectionName="PORTFOLIO" title="Hi, I'm Filip Ginzberg">
           Senior Product Designer crafting intuitive digital experiences

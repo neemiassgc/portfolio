@@ -6,7 +6,7 @@ import Header from "./Header";
 
 export default function TechnicalSegment() {
   return (
-    <div className="flex w-full max-w-[1280px] flex-col items-start gap-8">
+    <div className="flex w-full max-w-[1280px] flex-col items-start gap-8" id="skills">
       <Header sectionName="SKILLS & EXPERTISE" title="Technical Proficiencies">
           A comprehensive overview of my technical skills and expertise
           across different domains

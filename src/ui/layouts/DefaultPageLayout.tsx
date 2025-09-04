@@ -12,6 +12,7 @@ import { TopbarWithLeftNav } from "../components/TopbarWithLeftNav";
 import * as SubframeUtils from "../utils";
 import Image from "next/image";
 import { Button } from "../components/Button";
+import { useRouter } from "next/navigation";
 
 interface DefaultPageLayoutRootProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -27,10 +28,13 @@ const DefaultPageLayoutRoot = React.forwardRef<
   ref
 ) {
   const [selected, setSelected] = useState([1, 0, 0, 0]);
-  const selectItem = (index: number) => () => {
+  const router = useRouter();
+  
+  const selectItem = (index: number, anchorName: "home" | "skills" | "projects" | "connect") => () => {
     const newValues = [0, 0, 0, 0];
     newValues[index] = 1;
     setSelected(newValues);
+    router.push(`/#${anchorName}`);
   }
 
   return (
@@ -48,12 +52,12 @@ const DefaultPageLayoutRoot = React.forwardRef<
         }
         centerSlot={
           <div className="flex items-center gap-2">
-            <TopbarWithLeftNav.NavItem selected={!!selected[0]} onClick={selectItem(0)}>
+            <TopbarWithLeftNav.NavItem selected={!!selected[0]} onClick={selectItem(0, "home")}>
               Home
             </TopbarWithLeftNav.NavItem>
-            <TopbarWithLeftNav.NavItem selected={!!selected[1]} onClick={selectItem(1)}>Skills</TopbarWithLeftNav.NavItem>
-            <TopbarWithLeftNav.NavItem selected={!!selected[2]} onClick={selectItem(2)}>Projects</TopbarWithLeftNav.NavItem>
-            <TopbarWithLeftNav.NavItem selected={!!selected[3]} onClick={selectItem(3)}>Connect</TopbarWithLeftNav.NavItem>
+            <TopbarWithLeftNav.NavItem selected={!!selected[1]} onClick={selectItem(1, "skills")}>Skills</TopbarWithLeftNav.NavItem>
+            <TopbarWithLeftNav.NavItem selected={!!selected[2]} onClick={selectItem(2, "projects")}>Projects</TopbarWithLeftNav.NavItem>
+            <TopbarWithLeftNav.NavItem selected={!!selected[3]} onClick={selectItem(3, "connect")}>Connect</TopbarWithLeftNav.NavItem>
           </div>
         }
         rightSlot={<ToggleLangButton/>}

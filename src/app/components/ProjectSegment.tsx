@@ -5,7 +5,7 @@ import Header from "./Header";
 
 export default function ProjectSegment() {
   return (
-    <div className="flex w-full max-w-[1280px] flex-col items-start gap-8">
+    <div className="flex w-full max-w-[1280px] flex-col items-start gap-8" id="projects">
       <Header sectionName="PORTFOLIO PROJECTS" title="Projects">
         Explore my technical projects and open source contributions
       </Header>

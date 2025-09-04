@@ -5,7 +5,7 @@ import Header from "./Header";
 
 export default function ConnectSegment() {
   return (
-    <div className="flex w-full max-w-[1280px] grow shrink-0 basis-0 flex-col items-center gap-16">
+    <div className="flex w-full max-w-[1280px] grow shrink-0 basis-0 flex-col items-center gap-16" id="connect">
       <Header sectionName="CONNECT" title="Let's Connect">
         I&#39;m always interested in hearing about new opportunities,
         collaborations, and exciting projects.
