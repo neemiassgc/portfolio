@@ -17,3 +17,5 @@ export type Repository = BasicProps & {
 }
 
 export type Variant = "brand" | "neutral" | "error" | "success" | "warning";
+
+export type ProjectIconVariant = "backend" | "frontend" | "game" | "tool"
