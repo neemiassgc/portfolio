@@ -3,8 +3,9 @@ import { ProjectIconVariant, Repository } from "@/types";
 import { getRepositories } from "@/net";
 import SubframeCore, { IconName } from "@subframe/core";
 import { Badge } from "@/ui/components/Badge";
-import LinkButton from "./LinkButton";
 import ProjectNavBar from "./ProjectNavBar";
+import { Button } from "@/ui/components/Button";
+import Link from "next/link";
 
 export default async function ProjectSegment() {
   const repositories = await getRepositories();
@@ -84,7 +85,7 @@ function Card(props: {
             props.liveDemoLink &&
             <LinkButton
               variant="brand-secondary"
-              iconName="FeatherGithub"
+              iconName="FeatherExternalLink"
               title="Live Demo"
               href={props.liveDemoLink}
             />
