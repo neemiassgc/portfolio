@@ -48,7 +48,12 @@ const DefaultPageLayoutRoot = React.forwardRef<
     >
       <TopbarWithLeftNav
         logo={
-          <Image className="ml-5" src="/folder.svg" width={32} height={32} alt="Logo"/>
+          <div className="flex items-center gap-4 ml-4">
+            <Image src="/folder.svg" width={32} height={32} alt="Logo"/>
+            <span className="text-heading-2 font-heading-2 text-default-font">
+              Portfolio
+            </span>
+          </div>
         }
         centerSlot={
           <div className="flex items-center gap-2">
