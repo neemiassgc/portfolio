@@ -1,8 +1,10 @@
-import { ToggleGroup } from "@/ui/components/ToggleGroup";
 import Header from "./Header";
-import { Repository } from "@/types";
+import { ProjectIconVariant, Repository } from "@/types";
 import { getRepositories } from "@/net";
-import Card from "./Card";
+import SubframeCore, { IconName } from "@subframe/core";
+import { Badge } from "@/ui/components/Badge";
+import LinkButton from "./LinkButton";
+import ProjectNavBar from "./ProjectNavBar";
 
 export default async function ProjectSegment() {
   const repositories = await getRepositories();
@@ -12,27 +14,7 @@ export default async function ProjectSegment() {
       <Header sectionName="PORTFOLIO PROJECTS" title="Projects">
         Explore my technical projects and open source contributions
       </Header>
-      <div className="flex w-full items-center gap-4">
-        <div className="flex w-full items-center gap-4">
-          <ToggleGroup value="" onValueChange={(value: string) => {}}>
-            <ToggleGroup.Item icon="FeatherGrid" value="bf4918ae">
-              All
-            </ToggleGroup.Item>
-            <ToggleGroup.Item icon="FeatherServer" value="8614a054">
-              Backend
-            </ToggleGroup.Item>
-            <ToggleGroup.Item icon="FeatherMonitor" value="2e913acf">
-              Frontend
-            </ToggleGroup.Item>
-            <ToggleGroup.Item icon="FeatherGamepad2" value="5d2544b1">
-              Game
-            </ToggleGroup.Item>
-            <ToggleGroup.Item icon="FeatherTool" value="d8e536a7">
-              Tool
-            </ToggleGroup.Item>
-          </ToggleGroup>
-        </div>
-      </div>
+      <ProjectNavBar/>
       <div className="w-full items-start gap-8 grid grid-cols-2">
         {
           repositories.map((repository: Repository, index: number) => (
@@ -51,4 +33,73 @@ export default async function ProjectSegment() {
       </div>
     </div>
   )
+}
+
+function Card(props: {
+  projectIconVariant: ProjectIconVariant,
+  title: string,
+  description: string,
+  liveDemoLink?: string,
+  docsLink?: string,
+  githubLink: string,
+  topics: string[]
+}) {
+  const variantToIconsMap = {
+    "backend": "FeatherServer",
+    "frontend": "FeatherMonitor",
+    "game": "FeatherGamepad2",
+    "tool": "FeatherTool"
+  }
+
+  return (
+    <div className="flex flex-col items-start gap-6 rounded-md border border-solid border-neutral-border px-6 py-6">
+      <div className="flex w-full flex-col items-start gap-4">
+        <div className="flex w-full items-center gap-4">
+          <SubframeCore.Icon
+            className="text-heading-1 font-heading-1 text-brand-500"
+            name={variantToIconsMap[props.projectIconVariant] as IconName}
+          />
+          <div className="flex grow shrink-0 basis-0 flex-col items-start gap-2">
+            <span className="text-heading-2 font-heading-2 text-default-font">
+              {props.title}
+            </span>
+            <span className="text-body font-body text-subtext-color">
+              {props.description}
+            </span>
+          </div>
+        </div>
+        <div className="flex flex-wrap items-start gap-2">
+          {props.topics.map((topic: string, index: number) => (
+            <Badge key={index} variant="neutral">{topic}</Badge>
+          ))}
+        </div>
+        <div className="flex items-center gap-2">
+          <LinkButton
+            variant="neutral-secondary"
+            iconName="FeatherGithub"
+            title="Github"
+            href={props.githubLink}
+          />
+          {
+            props.liveDemoLink &&
+            <LinkButton
+              variant="brand-secondary"
+              iconName="FeatherGithub"
+              title="Live Demo"
+              href={props.liveDemoLink}
+            />
+          }
+          {
+            props.docsLink &&
+            <LinkButton
+              title="Docs"
+              variant="neutral-tertiary"
+              iconName="FeatherBook"
+              href={props.docsLink}
+            />
+          }
+        </div>
+      </div>
+    </div>
+  );
 }
