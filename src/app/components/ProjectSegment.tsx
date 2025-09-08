@@ -104,3 +104,23 @@ function Card(props: {
     </div>
   );
 }
+
+function LinkButton(props: {
+  href: string,
+  iconName: IconName,
+  title: string,
+  variant: "brand-secondary" | "neutral-secondary" | "neutral-tertiary",
+}) {  
+  return (
+    <Link href={props.href} target="_blank">
+      <Button
+        className="grow-0"
+        variant={props.variant}
+        size="small"
+        icon={props.iconName}
+      >
+        {props.title}
+      </Button>
+    </Link>
+  )
+}
