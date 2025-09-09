@@ -7,9 +7,11 @@ import ProjectNavBar from "./ProjectNavBar";
 import { Button } from "@/ui/components/Button";
 import Link from "next/link";
 import { IconWithBackground } from "@/ui/components/IconWithBackground";
+import { sortByCategory } from "@/tools";
 
 export default async function ProjectSegment() {
   const repositories = await getRepositories();
+  sortByCategory(repositories);
 
   return (
     <div className="flex w-full max-w-[1280px] flex-col items-start gap-8" id="projects">
