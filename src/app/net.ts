@@ -1,18 +1,24 @@
-import { GitHubRepository, Repository } from "@/types";
+import { GitHubRepository, ProjectCategory, Repository } from "@/types";
+import { includeStartingWith } from "./tools";
 
 export async function getRepositories(): Promise<Repository[]> {
   const fetchedRepositories: GitHubRepository[] = await authorizedFetch("https://api.github.com/user/repos");
 
   const filteredRepositories: Promise<Repository>[] = fetchedRepositories
-    .filter((repository: GitHubRepository) => repository.topics.includes("portfolio"))
+    .filter((repository: GitHubRepository) => includeStartingWith(repository.topics, "portfolio"))
     .map(async (repository: GitHubRepository) => {
+      const portfolioTopic = repository.topics.find(topic => topic.includes("portfolio")) as string;
+      const projectCategory = portfolioTopic.split("-")[1] ?? "backend";
+      console.log(projectCategory)
+
       return {
         name: repository.name,
         description: repository.description,
         topics: repository.topics,
         liveDemoLink: repository.homepage || undefined,
         docsLink: (await getDocsLink(repository)) || undefined,
-        githubLink: repository.html_url
+        githubLink: repository.html_url,
+        category: projectCategory as ProjectCategory
       };
     });
 

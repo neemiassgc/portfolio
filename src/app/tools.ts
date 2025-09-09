@@ -3,3 +3,9 @@ function capitalize(string: string): string {
 }
 
 export const empty: () => void = () => {};
+
+export function includeStartingWith(set: string[], fragment: string): string | null {
+  for (const item of set)
+    if (item.includes(fragment)) return item;
+  return null;
+}
