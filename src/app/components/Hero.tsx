@@ -1,9 +1,9 @@
-import { empty } from "@/tools";
 import { Button } from "@/ui/components/Button";
 import { IconButton } from "@/ui/components/IconButton";
 import SubframeCore, { IconName } from "@subframe/core";
 import Header from "./Header";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -19,33 +19,33 @@ export default function Hero() {
           <AboutMe iconName="FeatherMapPin" text="San Francisco, CA" />
         </div>
         <div className="flex items-center gap-4">
-          <Button
-            size="large"
-            icon="FeatherMail"
-            onClick={empty}
-          >
-            Get in touch
-          </Button>
+          <Link href="#connect">
+            <Button
+              size="large"
+              icon="FeatherMail"
+            >
+              Get in touch
+            </Button>
+          </Link>
           <Button
             variant="neutral-secondary"
             size="large"
             icon="FeatherDownload"
-            onClick={empty}
           >
             Download Resume
           </Button>
           <div className="flex items-center gap-2">
             <IconButton
               icon="FeatherLinkedin"
-              onClick={empty}
+
             />
             <IconButton
               icon="FeatherGithub"
-              onClick={empty}
+
             />
             <IconButton
               icon="FeatherTwitter"
-              onClick={empty}
+
             />
           </div>
         </div>
