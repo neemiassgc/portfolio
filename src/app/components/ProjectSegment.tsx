@@ -1,11 +1,12 @@
 import Header from "./Header";
-import { ProjectIconVariant, Repository } from "@/types";
+import { ProjectCategory, Repository, Variant } from "@/types";
 import { getRepositories } from "@/net";
-import SubframeCore, { IconName } from "@subframe/core";
+import { IconName } from "@subframe/core";
 import { Badge } from "@/ui/components/Badge";
 import ProjectNavBar from "./ProjectNavBar";
 import { Button } from "@/ui/components/Button";
 import Link from "next/link";
+import { IconWithBackground } from "@/ui/components/IconWithBackground";
 
 export default async function ProjectSegment() {
   const repositories = await getRepositories();
@@ -21,7 +22,7 @@ export default async function ProjectSegment() {
           repositories.map((repository: Repository, index: number) => (
             <Card
               key={index}
-              projectIconVariant={"backend"}
+              projectCategory={"backend"}
               title={repository.name}
               description={repository.description}
               liveDemoLink={repository.liveDemoLink}
@@ -37,7 +38,7 @@ export default async function ProjectSegment() {
 }
 
 function Card(props: {
-  projectIconVariant: ProjectIconVariant,
+  projectCategory: ProjectCategory,
   title: string,
   description: string,
   liveDemoLink?: string,
@@ -45,21 +46,24 @@ function Card(props: {
   githubLink: string,
   topics: string[]
 }) {
-  const variantToIconsMap = {
+  const categoryToIconsMap: { [key: string]: IconName } = {
     "backend": "FeatherServer",
     "frontend": "FeatherMonitor",
     "game": "FeatherGamepad2",
     "tool": "FeatherTool"
+  }
+  const categoryToVariantMap: { [key: string]: Variant } = {
+    "backend": "brand",
+    "frontend": "success",
+    "game": "warning",
+    "tool": "error"
   }
 
   return (
     <div className="flex flex-col items-start gap-6 rounded-md border border-solid border-neutral-border px-6 py-6">
       <div className="flex w-full flex-col items-start gap-4">
         <div className="flex w-full items-center gap-4">
-          <SubframeCore.Icon
-            className="text-heading-1 font-heading-1 text-brand-500"
-            name={variantToIconsMap[props.projectIconVariant] as IconName}
-          />
+          <IconWithBackground variant={categoryToVariantMap[props.projectCategory]} size="large" icon={categoryToIconsMap[props.projectCategory]}/>
           <div className="flex grow shrink-0 basis-0 flex-col items-start gap-2">
             <span className="text-heading-2 font-heading-2 text-default-font">
               {props.title}
