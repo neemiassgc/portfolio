@@ -16,6 +16,6 @@ export type Repository = BasicProps & {
   githubLink: string,
 }
 
-export type Variant = "brand" | "neutral" | "error" | "success" | "warning";
+export type Variant = "brand" | "neutral" | "error" | "success" | "warning" | undefined;
 
-export type ProjectIconVariant = "backend" | "frontend" | "game" | "tool"
+export type ProjectCategory = "backend" | "frontend" | "game" | "tool"
