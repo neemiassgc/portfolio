@@ -22,7 +22,7 @@ export default async function ProjectSegment() {
           repositories.map((repository: Repository, index: number) => (
             <Card
               key={index}
-              projectCategory={"backend"}
+              projectCategory={repository.category}
               title={repository.name}
               description={repository.description}
               liveDemoLink={repository.liveDemoLink}

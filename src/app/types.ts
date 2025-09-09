@@ -11,6 +11,7 @@ export type GitHubRepository = BasicProps & {
 }
 
 export type Repository = BasicProps & {
+  category: ProjectCategory,
   liveDemoLink?: string,
   docsLink?: string,
   githubLink: string,
