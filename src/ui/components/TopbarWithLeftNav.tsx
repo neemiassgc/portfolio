@@ -74,7 +74,7 @@ const TopbarWithLeftNavRoot = React.forwardRef<
   return (
     <nav
       className={SubframeUtils.twClassNames(
-        "flex w-full items-center justify-between border-b border-solid border-neutral-border bg-default-background px-4 py-4",
+        "flex flex-wrap justify-center gap-3 sm:gap-0 w-full sm:justify-between items-center border-b border-solid border-neutral-border bg-default-background px-4 py-4",
         className
       )}
       ref={ref}

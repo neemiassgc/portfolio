@@ -19,7 +19,7 @@ export default async function ProjectSegment() {
         Explore my technical projects and open source contributions
       </Header>
       <ProjectNavBar/>
-      <div className="w-full items-start gap-8 grid grid-cols-2">
+      <div className="w-full items-start gap-8 grid grid-cols-1 md:grid-cols-2">
         {
           repositories.map((repository: Repository, index: number) => (
             <Card

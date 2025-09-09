@@ -48,7 +48,7 @@ const DefaultPageLayoutRoot = React.forwardRef<
     >
       <TopbarWithLeftNav
         logo={
-          <div className="flex items-center gap-4 ml-4">
+          <div className="flex items-center gap-4 ml-4 mr-8 sm:mr-0">
             <Image src="/folder.svg" width={32} height={32} alt="Logo"/>
             <span className="text-heading-2 font-heading-2 text-default-font">
               Portfolio
@@ -56,7 +56,7 @@ const DefaultPageLayoutRoot = React.forwardRef<
           </div>
         }
         centerSlot={
-          <div className="flex items-center gap-2">
+          <div className="order-last sm:order-none flex flex-shrink items-center gap-2">
             <TopbarWithLeftNav.NavItem selected={!!selected[0]} onClick={selectItem(0, "home")}>
               Home
             </TopbarWithLeftNav.NavItem>
@@ -68,7 +68,7 @@ const DefaultPageLayoutRoot = React.forwardRef<
         rightSlot={<ToggleLangButton/>}
       />
       {children ? (
-        <div className="flex w-full grow shrink-0 basis-0 flex-col items-start gap-4 overflow-y-auto bg-default-background">
+        <div className="flex-grow flex w-full shrink-0 basis-0 flex-col items-start gap-4 overflow-y-auto bg-default-background">
           {children}
         </div>
       ) : null}

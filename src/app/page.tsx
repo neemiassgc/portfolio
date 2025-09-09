@@ -9,7 +9,7 @@ function LandingPage() {
   return (
     <DefaultPageLayout>
       <div className="flex h-full w-full flex-col items-start overflow-auto">
-        <div className="flex w-full flex-col items-center gap-16 px-8 py-16">
+        <div className="flex w-full flex-col items-center gap-16 px-4 py-16">
           <Hero/>
           <TechnicalSegment/>
           <ProjectSegment/>

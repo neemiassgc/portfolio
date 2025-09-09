@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <div className="flex w-full max-w-[1280px] flex-wrap items-center justify-between" id="home">
+    <div className="flex flex-col md:flex-row justify-center lg:justify-between max-w-[1280px] flex-wrap items-center" id="home">
       <div className="flex grow shrink-0 basis-0 flex-col items-start gap-8">
         <Header sectionName="PORTFOLIO" title="Hi, I'm Filip Ginzberg">
           Senior Product Designer crafting intuitive digital experiences
@@ -18,7 +18,7 @@ export default function Hero() {
           <AboutMe iconName="FeatherMail" text="filip.ginzberg@example.com" />
           <AboutMe iconName="FeatherMapPin" text="San Francisco, CA" />
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4 justify-center sm:justify-between">
           <Link href="#connect">
             <Button
               size="large"
@@ -43,14 +43,10 @@ export default function Hero() {
               icon="FeatherGithub"
 
             />
-            <IconButton
-              icon="FeatherTwitter"
-
-            />
           </div>
         </div>
       </div>
-      <div className="flex h-96 w-96 flex-none items-center justify-center overflow-hidden rounded-full bg-brand-100">
+      <div className="order-first md:order-none h-96 w-96 flex items-center overflow-hidden rounded-full bg-brand-100">
         <Image
           width={112}
           height={112}
