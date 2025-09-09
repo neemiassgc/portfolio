@@ -62,7 +62,7 @@ function Card(props: {
   }
 
   return (
-    <div className="flex flex-col items-start gap-6 rounded-md border border-solid border-neutral-border px-6 py-6">
+    <div id={props.projectCategory} className="flex flex-col items-start gap-6 rounded-md border border-solid border-neutral-border px-6 py-6">
       <div className="flex w-full flex-col items-start gap-4">
         <div className="flex w-full items-center gap-4">
           <IconWithBackground variant={categoryToVariantMap[props.projectCategory]} size="large" icon={categoryToIconsMap[props.projectCategory]}/>

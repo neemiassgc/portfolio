@@ -9,8 +9,7 @@ export async function getRepositories(): Promise<Repository[]> {
     .map(async (repository: GitHubRepository) => {
       const portfolioTopic = repository.topics.find(topic => topic.includes("portfolio")) as string;
       const projectCategory = portfolioTopic.split("-")[1] ?? "backend";
-      console.log(projectCategory)
-
+      
       return {
         name: repository.name,
         description: repository.description,
