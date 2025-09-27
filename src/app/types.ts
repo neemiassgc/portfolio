@@ -20,3 +20,14 @@ export type Repository = BasicProps & {
 export type Variant = "brand" | "neutral" | "error" | "success" | "warning" | undefined;
 
 export type ProjectCategory = "backend" | "frontend" | "game" | "tool"
+
+export type BasicInput = {
+  value: string,
+  error: string
+}
+
+export type InputProps = {
+  name: BasicInput,
+  email: BasicInput,
+  message: BasicInput
+}

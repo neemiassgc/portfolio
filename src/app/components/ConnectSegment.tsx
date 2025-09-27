@@ -5,28 +5,54 @@ import { TextArea } from "@/ui/components/TextArea";
 import { TextField } from "@/ui/components/TextField";
 import Header from "./Header";
 import { useState } from "react";
+import { InputProps } from "@/types";
 
 export default function ConnectSegment() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [field, setField] = useState<InputProps>({
+    name: {
+      value: "",
+      error: ""
+    },
+    email: {
+      value: "",
+      error: ""
+    },
+    message: {
+      value: "",
+      error: ""
+    }
+  })
+
   const [sending, setSending] = useState(false);
 
-  const send = (body: string) => () => {
-    setSending(true);
-    fetch("/api/send", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body,
+  const set = (prop: string, value: string) => {
+    setField({
+      ...field,
+      [prop]: {
+        value,
+        error: ""
+      }
     })
-      .finally(() => {
-        setSending(false);
-        setName("");
-        setEmail("");
-        setMessage("");
-      });
+  }
+
+  const send = (body: string) => () => {
+    checkForErrors(field).then(() => {
+      setSending(true);
+      fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body,
+      })
+        .finally(() => {
+          setSending(false);
+          set("name", "")
+          set("email", "")
+          set("message", "")
+        });
+    })
+    .catch(setField)
   }
 
   return (
@@ -46,36 +72,42 @@ export default function ConnectSegment() {
         </div>
         <div className="flex w-full flex-col items-start gap-4">
           <TextField
+            error={!!field.name.error}
+            helpText={field.name.error}
             className="h-auto w-full flex-none"
             label="Name"
             disabled={sending}
           >
             <TextField.Input
               placeholder="Your full name"
-              value={name}
-              onChange={event => setName(event.target.value)}
+              value={field.name.value}
+              onChange={event => set("name", event.target.value)}
             />
           </TextField>
           <TextField
+            error={!!field.email.error}
+            helpText={field.email.error}
             disabled={sending}
             className="h-auto w-full flex-none"
             label="Email"
           >
             <TextField.Input
               placeholder="your@email.com"
-              value={email}
-              onChange={event => setEmail(event.target.value)}
+              value={field.email.value}
+              onChange={event => set("email", event.target.value)}
             />
           </TextField>
           <TextArea
+            error={!!field.message.error}
+            helpText={field.message.error}
             className="h-auto w-full flex-none"
             label="Message"
           >
             <TextArea.Input
               disabled={sending}
               placeholder="Tell me about your project or opportunity..."
-              value={message}
-              onChange={event => setMessage(event.target.value)}
+              value={field.message.value}
+              onChange={event => set("message", event.target.value)}
             />
           </TextArea>
           <div className="flex items-center gap-4">
@@ -83,7 +115,7 @@ export default function ConnectSegment() {
               size="large"
               icon="FeatherSend"
               loading={sending}
-              onClick={send(compressBody(name, email, message))}
+              onClick={send(compressBody(field))}
             >
               Send Message
             </Button>
@@ -94,10 +126,40 @@ export default function ConnectSegment() {
   )
 }
 
-function compressBody(name: string, email: string, message: string): string {
+function compressBody(field: InputProps) {
   return JSON.stringify({
-    name,
-    email,
-    message
+    name: field.name.value,
+    email: field.email.value,
+    message: field.message.value
+  });
+}
+
+function checkForErrors(field: InputProps): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const messages = [];
+    for (const value of Object.values(field)) {
+      if (value.value.length === 0) {
+        messages.push("Can not be empty");
+      }
+      else if (value.value.length < 4) {
+        messages.push("Too small");
+      }
+    }
+
+    if (messages.length === 0) resolve();
+    else reject({
+      name: {
+        value: field.name.value,
+        error: messages[0] ?? ""
+      },
+      email: {
+        value: field.email.value,
+        error: messages[1] ?? ""
+      },
+      message: {
+        value: field.message.value,
+        error: messages[2] ?? ""
+      }
+    });
   });
 }
