@@ -146,30 +146,17 @@ function compressBody(field: InputProps) {
 
 function checkForErrors(field: InputProps): Promise<void> {
   return new Promise((resolve, reject) => {
-    const messages = [];
-    for (const value of Object.values(field)) {
-      if (value.value.length === 0) {
-        messages.push("Can not be empty");
-      }
-      else if (value.value.length < 4) {
-        messages.push("Too small");
-      }
+    const workingObj: { [key: string]: BasicInput } = {};
+    for (const [ key, value ] of Object.entries(field)) {
+      workingObj[key] = {
+          value: value.value,
+          error: value.value.length === 0 ?
+          "Can not be empty" : value.value.length < 4 ?
+          "Too short" : ""
+        }
     }
 
-    if (messages.length === 0) resolve();
-    else reject({
-      name: {
-        value: field.name.value,
-        error: messages[0] ?? ""
-      },
-      email: {
-        value: field.email.value,
-        error: messages[1] ?? ""
-      },
-      message: {
-        value: field.message.value,
-        error: messages[2] ?? ""
-      }
-    });
+    if (Object.values(workingObj).every(value => !value.error)) resolve();
+    else reject(workingObj);
   });
 }
