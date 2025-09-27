@@ -9,14 +9,12 @@ export default function Hero() {
   return (
     <div className="flex flex-col md:flex-row justify-center lg:justify-between max-w-[1280px] flex-wrap items-center" id="home">
       <div className="flex grow shrink-0 basis-0 flex-col items-start gap-8">
-        <Header sectionName="PORTFOLIO" title="Hi, I'm Filip Ginzberg">
-          Senior Product Designer crafting intuitive digital experiences
-          with a focus on user-centered design and technological
-          innovation.
+        <Header sectionName="PORTFOLIO" title="Hi, I'm Neemias Santos">
+          Full-Stack Web Developer turning ideas into digital experiences with usage of modern technologies.
         </Header>
         <div className="flex flex-col items-start gap-4">
-          <AboutMe iconName="FeatherMail" text="filip.ginzberg@example.com" />
-          <AboutMe iconName="FeatherMapPin" text="San Francisco, CA" />
+          <AboutMe iconName="FeatherMail" text="neemiassgc@outlook.com" />
+          <AboutMe iconName="FeatherMapPin" text="São Paulo, BR" />
         </div>
         <div className="flex flex-wrap items-center gap-4 justify-center sm:justify-between">
           <Link href="#connect">
