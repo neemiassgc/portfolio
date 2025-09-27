@@ -4,8 +4,31 @@ import { Button } from "@/ui/components/Button";
 import { TextArea } from "@/ui/components/TextArea";
 import { TextField } from "@/ui/components/TextField";
 import Header from "./Header";
+import { useState } from "react";
 
 export default function ConnectSegment() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [sending, setSending] = useState(false);
+
+  const send = (body: string) => () => {
+    setSending(true);
+    fetch("/api/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body,
+    })
+      .finally(() => {
+        setSending(false);
+        setName("");
+        setEmail("");
+        setMessage("");
+      });
+  }
+
   return (
     <div className="flex w-full max-w-[1280px] grow shrink-0 basis-0 flex-col items-center gap-16" id="connect">
       <Header sectionName="CONNECT" title="Let's Connect">
@@ -25,47 +48,42 @@ export default function ConnectSegment() {
           <TextField
             className="h-auto w-full flex-none"
             label="Name"
-            helpText=""
+            disabled={sending}
           >
             <TextField.Input
               placeholder="Your full name"
-              value=""
-              onChange={(
-                event: React.ChangeEvent<HTMLInputElement>
-              ) => {}}
+              value={name}
+              onChange={event => setName(event.target.value)}
             />
           </TextField>
           <TextField
+            disabled={sending}
             className="h-auto w-full flex-none"
             label="Email"
-            helpText=""
           >
             <TextField.Input
               placeholder="your@email.com"
-              value=""
-              onChange={(
-                event: React.ChangeEvent<HTMLInputElement>
-              ) => {}}
+              value={email}
+              onChange={event => setEmail(event.target.value)}
             />
           </TextField>
           <TextArea
             className="h-auto w-full flex-none"
             label="Message"
-            helpText=""
           >
             <TextArea.Input
+              disabled={sending}
               placeholder="Tell me about your project or opportunity..."
-              value=""
-              onChange={(
-                event: React.ChangeEvent<HTMLTextAreaElement>
-              ) => {}}
+              value={message}
+              onChange={event => setMessage(event.target.value)}
             />
           </TextArea>
           <div className="flex items-center gap-4">
             <Button
               size="large"
               icon="FeatherSend"
-              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {}}
+              loading={sending}
+              onClick={send(compressBody(name, email, message))}
             >
               Send Message
             </Button>
@@ -74,4 +92,12 @@ export default function ConnectSegment() {
       </div>
     </div>
   )
+}
+
+function compressBody(name: string, email: string, message: string): string {
+  return JSON.stringify({
+    name,
+    email,
+    message
+  });
 }
