@@ -5,7 +5,7 @@ import { TextArea } from "@/ui/components/TextArea";
 import { TextField } from "@/ui/components/TextField";
 import Header from "./Header";
 import { useState } from "react";
-import { InputProps } from "@/types";
+import { BasicInput, InputProps } from "@/types";
 
 export default function ConnectSegment() {
   const [field, setField] = useState<InputProps>({
@@ -24,15 +24,21 @@ export default function ConnectSegment() {
   })
 
   const [sending, setSending] = useState(false);
+  const [messageSent, setMessageSent] = useState(false);
 
-  const set = (prop: string, value: string) => {
-    setField({
-      ...field,
-      [prop]: {
+  const set = (props: string[], value: string) => {
+    const newObj: { [key: string]: BasicInput } = {};
+    for (const key of props) {
+      newObj[key] = {
         value,
         error: ""
       }
-    })
+    }
+    setField({
+      ...field,
+      ...newObj
+    });
+    setMessageSent(false);
   }
 
   const send = (body: string) => () => {
@@ -47,9 +53,8 @@ export default function ConnectSegment() {
       })
         .finally(() => {
           setSending(false);
-          set("name", "")
-          set("email", "")
-          set("message", "")
+          set(["name", "email", "message"], "");
+          setMessageSent(true);
         });
     })
     .catch(setField)
@@ -81,7 +86,7 @@ export default function ConnectSegment() {
             <TextField.Input
               placeholder="Your full name"
               value={field.name.value}
-              onChange={event => set("name", event.target.value)}
+              onChange={event => set(["name"], event.target.value)}
             />
           </TextField>
           <TextField
@@ -94,7 +99,7 @@ export default function ConnectSegment() {
             <TextField.Input
               placeholder="your@email.com"
               value={field.email.value}
-              onChange={event => set("email", event.target.value)}
+              onChange={event => set(["email"], event.target.value)}
             />
           </TextField>
           <TextArea
@@ -107,17 +112,22 @@ export default function ConnectSegment() {
               disabled={sending}
               placeholder="Tell me about your project or opportunity..."
               value={field.message.value}
-              onChange={event => set("message", event.target.value)}
+              onChange={event => set(["message"], event.target.value)}
             />
           </TextArea>
           <div className="flex items-center gap-4">
             <Button
+              className={messageSent ? "bg-green-600 hover:bg-green-500 active:bg-green-600" : ""}
+              variant="brand-primary"
               size="large"
-              icon="FeatherSend"
+              icon={messageSent ? "FeatherCheckCircle" : "FeatherSend"}
               loading={sending}
+              onMouseEnter={() => setMessageSent(false)}
               onClick={send(compressBody(field))}
             >
-              Send Message
+              {
+                messageSent ? "Sent" : "Send Message"
+              }
             </Button>
           </div>
         </div>
