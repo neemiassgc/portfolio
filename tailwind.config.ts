@@ -9,5 +9,5 @@ export default {
   ],
   theme: {},
   plugins: [],
-  presets: [require("./src\\ui/tailwind.config.js")]
+  presets: [import("./src/ui/tailwind.config")]
 } satisfies Config;
