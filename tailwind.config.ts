@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import presets from "./src/ui/tailwind.config";
 
 export default {
   content: [
@@ -9,5 +10,5 @@ export default {
   ],
   theme: {},
   plugins: [],
-  presets: [import("./src/ui/tailwind.config")]
+  presets: [presets]
 } satisfies Config;

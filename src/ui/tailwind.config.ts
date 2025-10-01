@@ -1,6 +1,6 @@
-module.exports = {
-  // ...
+import { Config } from "tailwindcss";
 
+const presets: Partial<Config> = {
   theme: {
     extend: {
       colors: {
@@ -187,5 +187,7 @@ module.exports = {
         },
       },
     },
-  },
+  }
 };
+
+export default presets;
