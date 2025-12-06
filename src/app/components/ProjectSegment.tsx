@@ -25,7 +25,7 @@ export default async function ProjectSegment() {
         {
           repositories.map(async (repository: Repository, index: number) => (
             <Card
-              imageData={await getBase64Screenshot()}
+              imageData={await getBase64Screenshot(repository.name)}
               key={index}
               projectCategory={repository.category}
               title={repository.name}
