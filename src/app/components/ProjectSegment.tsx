@@ -8,6 +8,8 @@ import { Button } from "@/ui/components/Button";
 import Link from "next/link";
 import { IconWithBackground } from "@/ui/components/IconWithBackground";
 import { sortByCategory } from "@/tools";
+import Image from "next/image";
+import { getBase64Screenshot } from "@/s3";
 
 export default async function ProjectSegment() {
   const repositories = await getRepositories();
@@ -21,8 +23,9 @@ export default async function ProjectSegment() {
       <ProjectNavBar/>
       <div className="w-full items-start gap-8 grid grid-cols-1 md:grid-cols-2">
         {
-          repositories.map((repository: Repository, index: number) => (
+          repositories.map(async (repository: Repository, index: number) => (
             <Card
+              imageData={await getBase64Screenshot()}
               key={index}
               projectCategory={repository.category}
               title={repository.name}
@@ -39,14 +42,15 @@ export default async function ProjectSegment() {
   )
 }
 
-function Card(props: {
+async function Card(props: {
   projectCategory: ProjectCategory,
   title: string,
   description: string,
   liveDemoLink?: string,
   docsLink?: string,
   githubLink: string,
-  topics: string[]
+  topics: string[],
+  imageData?: string
 }) {
   const categoryToIconsMap: { [key: string]: IconName } = {
     "backend": "FeatherServer",
@@ -64,6 +68,16 @@ function Card(props: {
   return (
     <div id={props.projectCategory} className="flex flex-col items-start gap-6 rounded-md border border-solid border-neutral-border px-6 py-6">
       <div className="flex w-full flex-col items-start gap-4">
+        {
+          props.imageData &&
+          <Image
+            alt="preview"
+            width={1920}
+            height={1080}
+              className="w-full flex-none object-cover"
+              src={`data:image/jpeg;base64,${props.imageData}`}
+            />
+        }
         <div className="flex w-full items-center gap-4">
           <IconWithBackground variant={categoryToVariantMap[props.projectCategory]} size="large" icon={categoryToIconsMap[props.projectCategory]}/>
           <div className="flex grow shrink-0 basis-0 flex-col items-start gap-2">
