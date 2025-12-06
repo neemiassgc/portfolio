@@ -112,7 +112,7 @@ async function Card(props: {
           {
             props.liveDemoLink &&
             <LinkButton
-              variant="brand-secondary"
+              variant="destructive-secondary"
               iconName="FeatherExternalLink"
               title="Live Demo"
               href={props.liveDemoLink}
@@ -122,7 +122,7 @@ async function Card(props: {
             props.docsLink &&
             <LinkButton
               title="Docs"
-              variant="neutral-tertiary"
+              variant="neutral-secondary"
               iconName="FeatherBook"
               href={props.docsLink}
             />
@@ -137,7 +137,7 @@ function LinkButton(props: {
   href: string,
   iconName: IconName,
   title: string,
-  variant: "brand-secondary" | "neutral-secondary" | "neutral-tertiary",
+  variant: "neutral-secondary" | "destructive-secondary",
 }) {  
   return (
     <Link href={props.href} target="_blank">
