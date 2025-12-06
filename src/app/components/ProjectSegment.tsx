@@ -144,3 +144,13 @@ function LinkButton(props: {
     </Link>
   )
 }
+
+function splitByTwo(repositories: Repository[]): Repository[][] {
+  const left = [];
+  const right = [];
+  for (let i = 0; i < repositories.length; i++) {
+    if (i % 2 === 0) left.push(repositories[i]);
+    else right.push(repositories[i]);
+  }
+  return [left, right];
+}
