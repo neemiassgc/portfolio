@@ -15,6 +15,8 @@ export default async function ProjectSegment() {
   const repositories = await getRepositories();
   sortByCategory(repositories);
 
+  const splitRepositories = splitByTwo(repositories);
+
   return (
     <div className="flex w-full max-w-[1280px] flex-col items-start gap-8" id="projects">
       <Header sectionName="PORTFOLIO PROJECTS" title="Projects">
@@ -23,19 +25,25 @@ export default async function ProjectSegment() {
       <ProjectNavBar/>
       <div className="w-full items-start gap-8 grid grid-cols-1 md:grid-cols-2">
         {
-          repositories.map(async (repository: Repository, index: number) => (
-            <Card
-              imageData={await getBase64Screenshot(repository.name)}
-              key={index}
-              projectCategory={repository.category}
-              title={repository.name}
-              description={repository.description}
-              liveDemoLink={repository.liveDemoLink}
-              docsLink={repository.docsLink}
-              githubLink={repository.githubLink}
-              topics={repository.topics}
-            />
-          ))
+          splitRepositories.map((reps, i) => 
+            <div key={i} className="grid grid-cols-1 gap-6">
+              {
+                reps.map(async (repository: Repository, key: number) => (
+                <Card
+                  imageData={await getBase64Screenshot(repository.name)}
+                  key={key}
+                  projectCategory={repository.category}
+                  title={repository.name}
+                  description={repository.description}
+                  liveDemoLink={repository.liveDemoLink}
+                  docsLink={repository.docsLink}
+                  githubLink={repository.githubLink}
+                  topics={repository.topics}
+                />
+              ))
+              }
+            </div>
+          )
         }
       </div>
     </div>
@@ -74,7 +82,7 @@ async function Card(props: {
             alt="preview"
             width={1920}
             height={1080}
-              className="w-full flex-none object-cover"
+              className="w-full flex-none object-cover border border-solid border-neutral-border rounded-sm p-1"
               src={`data:image/jpeg;base64,${props.imageData}`}
             />
         }
