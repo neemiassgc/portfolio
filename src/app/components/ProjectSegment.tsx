@@ -9,7 +9,6 @@ import Link from "next/link";
 import { IconWithBackground } from "@/ui/components/IconWithBackground";
 import { sortByCategory } from "@/tools";
 import Image from "next/image";
-import { getBase64Screenshot } from "@/s3";
 
 export default async function ProjectSegment() {
   const repositories = await getRepositories();
@@ -30,7 +29,7 @@ export default async function ProjectSegment() {
               {
                 reps.map(async (repository: Repository, key: number) => (
                 <Card
-                  imageData={await getBase64Screenshot(repository.name)}
+                  imageData={`https://static-10.s3.sa-east-1.amazonaws.com/screenshots/${repository.name}.png`}
                   key={key}
                   projectCategory={repository.category}
                   title={repository.name}
@@ -83,7 +82,7 @@ async function Card(props: {
             width={1920}
             height={1080}
               className="w-full flex-none object-cover border border-solid border-neutral-border rounded-sm p-1"
-              src={`data:image/jpeg;base64,${props.imageData}`}
+              src={props.imageData}
             />
         }
         <div className="flex w-full items-center gap-4">
