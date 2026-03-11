@@ -20,7 +20,7 @@ export default function TechnicalSegment() {
           }}
           badges={{
             iconName: "FeatherCode",
-            items: ["Java", "Spring Boot", "Hibernate", "REST APIs", "Json"]
+            items: ["Java", "Spring Boot", "Spring", "Spring Security", "Hibernate", "REST APIs", "Json"]
           }}
         />
         <BadgeSet
