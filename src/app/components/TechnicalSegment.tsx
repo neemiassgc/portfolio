@@ -2,7 +2,7 @@ import { Variant } from "@/types";
 import { IconWithBackground } from "@/ui/components/IconWithBackground";
 import { IconName } from "@subframe/core";
 import Header from "./Header";
-import Image from "next/image";
+import BadgeShield from "./BadgeShield";
 
 export default function TechnicalSegment() {
   return (
@@ -20,7 +20,7 @@ export default function TechnicalSegment() {
           }}
           badges={{
             iconName: "FeatherCode",
-            items: ["Java", "Spring Boot", "Spring", "Spring Security", "Hibernate", "REST APIs", "Json"]
+            items: ["Java", "Spring Boot", "Spring", "Spring Security", "Hibernate"]
           }}
         />
         <BadgeSet
@@ -42,7 +42,7 @@ export default function TechnicalSegment() {
           }}
           badges={{
             iconName: "FeatherDatabase",
-            items: ["PostgreSQL", "Supabase", "Firebase", "AWS S3", "Google App Engine"]
+            items: ["PostgreSQL", "Supabase", "Firebase", "AWS", "S3", "Google Cloud", "App Engine", "Cloud Run", "Compute Engine"]
           }}
         />
         <BadgeSet
@@ -61,7 +61,7 @@ export default function TechnicalSegment() {
   )
 }
 
-function BadgeSet(props: {
+async function BadgeSet(props: {
   title: {
     iconName: IconName;
     text: string;
@@ -72,6 +72,7 @@ function BadgeSet(props: {
     items: string[]
   }
 }) {
+
   return (
     <div className="flex w-full flex-col items-start gap-4">
       <div className="flex items-center gap-2">
@@ -86,10 +87,9 @@ function BadgeSet(props: {
       </div>
       <div className="flex flex-wrap items-start gap-2">
         {
-          props.badges.items.map(e => e.toLowerCase()).map((item, index) => {
-            const convertedItem = item === "java" ? "openjdk" : item.includes("google") ? "google cloud" : item;
+          props.badges.items.map(e => e.toLowerCase()).map((badgeName, index) => {
             return (
-              <Shield key={index} title={item} logo={convertedItem} logoColor={badgesToColorMap[convertedItem]}/>
+              <BadgeShield key={index} title={badgeName} logoName={polish(badgeName)}/>
             )
           })
         }
@@ -98,44 +98,6 @@ function BadgeSet(props: {
   )
 }
 
-async function Shield(props: { title: string, logo: string, logoColor: string}) {
-  return (
-    <Image
-      alt={props.title}
-      width={0}
-      height={0}
-      className="w-fit h-fit"
-      src={`https://img.shields.io/badge/${props.title}-f1f5f9?logo=${
-        props.logo.toLowerCase()}&logoColor=${props.logoColor}&style=for-the-badge`}
-    />
-  )
-}
-
-const badgesToColorMap: { [key: string]: string } = {
-  "html": "E34F26",
-  "css": "663399",
-  "javascript": "F7DF1E",
-  "react": "61DAFB",
-  "typescript": "3178C6",
-  "next.js": "000000",
-  "tailwind css": "06B6D4",
-  "openjdk": "000000",
-  "subframe": "000000",
-  "vercel": "000000",
-  "auth0": "EB5424",
-  "spring": "6DB33F",
-  "spring boot": "6DB33F",
-  "spring security": "6DB33F",
-  "hibernate": "59666C",
-  "docker": "2496ED",
-  "git": "F05032",
-  "intellij idea": "000000",
-  "postgresSQL": "4169E1",
-  "firebase": "DD2C00",
-  "supabase": "3FCF8E",
-  "linux": "FCC624",
-  "insomnia": "4000BF",
-  "notion": "000000",
-  "json": "4000BF",
-  "google cloud": "4285F4",
+function polish(str: string): string {
+  return str.replaceAll(" ", "").replaceAll(".", "dot").toLowerCase();
 }
