@@ -15,12 +15,6 @@ module.exports = {
         pathname: '/9.x/**',
       },
       {
-        protocol: 'https',
-        hostname: "img.shields.io",
-        port: '',
-        pathname: '/badge/**'
-      },
-      {
         hostname: "static-10.s3.sa-east-1.amazonaws.com",
         port: '',
         pathname: "/screenshots/**",
