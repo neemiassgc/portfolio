@@ -73,6 +73,13 @@ async function BadgeSet(props: {
   }
 }) {
 
+  const data = await Promise.all(props.badges.items.map(async item => {
+    const domain = process.env["S3_DOMAIN"];
+    const iconPath = process.env["S3_ICON_PATH"];
+    const req = await fetch(`${domain}${iconPath}/${polish(item)}.svg`);
+    return req.text();
+  }))
+
   return (
     <div className="flex w-full flex-col items-start gap-4">
       <div className="flex items-center gap-2">
@@ -89,7 +96,7 @@ async function BadgeSet(props: {
         {
           props.badges.items.map(e => e.toLowerCase()).map((badgeName, index) => {
             return (
-              <BadgeShield key={index} title={badgeName} logoName={polish(badgeName)}/>
+              <BadgeShield key={index} title={badgeName} rawLogo={Buffer.from(data[index]).toString("base64")}/>
             )
           })
         }
