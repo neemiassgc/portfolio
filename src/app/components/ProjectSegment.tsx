@@ -1,6 +1,6 @@
 import Header from "./Header";
-import { ProjectCategory, Repository, Variant } from "@/types";
-import { getRepositories } from "@/net";
+import { Lang, ProjectCategory, Repository, Variant } from "@/types";
+import { getRepositories } from "@/integration/github";
 import { IconName } from "@subframe/core";
 import { Badge } from "@/ui/components/Badge";
 import ProjectNavBar from "./ProjectNavBar";
@@ -9,18 +9,19 @@ import Link from "next/link";
 import { IconWithBackground } from "@/ui/components/IconWithBackground";
 import { sortByCategory } from "@/tools";
 import Image from "next/image";
+import { findSectionData } from "@/integration/notion";
 
-export default async function ProjectSegment() {
+export default async function ProjectSegment(props: { lang: Lang }) {
   const repositories = await getRepositories();
+  const projectSectionData = await findSectionData(2, props.lang);
+
   sortByCategory(repositories);
 
   const splitRepositories = splitByTwo(repositories);
 
   return (
     <div className="flex w-full max-w-[1280px] flex-col items-start gap-8" id="projects">
-      <Header sectionName="PORTFOLIO PROJECTS" title="Projects">
-        Explore my technical projects
-      </Header>
+      <Header sectionName="PORTFOLIO PROJECTS" title={projectSectionData.title} subtitle={projectSectionData.subtitle}/>
       <ProjectNavBar/>
       <div className="w-full items-start gap-8 grid grid-cols-1 md:grid-cols-2">
         {
