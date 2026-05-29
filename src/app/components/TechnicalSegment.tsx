@@ -1,16 +1,18 @@
-import { Variant } from "@/types";
+import { Lang, Variant } from "@/types";
 import { IconWithBackground } from "@/ui/components/IconWithBackground";
 import { IconName } from "@subframe/core";
 import Header from "./Header";
 import BadgeShield from "./BadgeShield";
+import { findSectionData } from "@/integration/notion";
 
-export default function TechnicalSegment() {
+export default async function TechnicalSegment(props: { lang: Lang }) {
+  const technicalSectionData = await findSectionData(1, props.lang);
+
   return (
     <div className="flex w-full max-w-[1280px] flex-col items-start gap-8" id="skills">
-      <Header sectionName="SKILLS & EXPERTISE" title="Technical Proficiencies">
-          A comprehensive overview of my technical skills and expertise
-          across different domains
-      </Header>
+      <Header sectionName="SKILLS & EXPERTISE" title={technicalSectionData.title}
+        subtitle={technicalSectionData.subtitle}
+      />
       <div className="flex w-full flex-col items-start gap-8">
         <BadgeSet
           title={{
