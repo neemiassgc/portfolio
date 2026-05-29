@@ -1,7 +1,8 @@
 export default function Header(props: {
   sectionName: string,
   title: string,
-  children: string
+  subtitle: string,
+  children?: string
 }) {
   return (
     <div className="w-full flex flex-col items-start gap-4">
@@ -12,8 +13,14 @@ export default function Header(props: {
         {props.title}
       </span>
       <span className="text-heading-2 font-heading-2 text-subtext-color">
-        {props.children}
+        {props.subtitle}
       </span>
+      {
+        props.children &&
+        <span className="font-body text-subtext-color">
+          {props.children}
+        </span>
+      }
     </div>
   )
 }
