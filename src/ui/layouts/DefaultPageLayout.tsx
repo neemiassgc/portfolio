@@ -1,4 +1,3 @@
-"use client";
 /*
  * Documentation:
  * Avatar — https://app.subframe.com/library?component=Avatar_bec25ae6-5010-4485-b46b-cf79e3943ab2
@@ -7,12 +6,12 @@
  * Topbar with left nav — https://app.subframe.com/library?component=Topbar+with+left+nav_3cac908f-e20b-4c42-a91e-8736a54e8799
  */
 
-import React, { useState } from "react";
+import React from "react";
 import { TopbarWithLeftNav } from "../components/TopbarWithLeftNav";
 import * as SubframeUtils from "../utils";
 import Image from "next/image";
-import { Button } from "../components/Button";
-import { useRouter } from "next/navigation";
+import { Lang } from "@/types";
+import LinkButton from "@/components/LinkButton";
 
 interface DefaultPageLayoutRootProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -27,15 +26,7 @@ const DefaultPageLayoutRoot = React.forwardRef<
   { children, className, ...otherProps }: DefaultPageLayoutRootProps,
   ref
 ) {
-  const [selected, setSelected] = useState([1, 0, 0, 0]);
-  const router = useRouter();
-  
-  const selectItem = (index: number, anchorName: "home" | "skills" | "projects" | "connect") => () => {
-    const newValues = [0, 0, 0, 0];
-    newValues[index] = 1;
-    setSelected(newValues);
-    router.push(`/#${anchorName}`);
-  }
+  const lang = otherProps.lang as Lang;
 
   return (
     <div
@@ -57,15 +48,13 @@ const DefaultPageLayoutRoot = React.forwardRef<
         }
         centerSlot={
           <div className="order-last sm:order-none flex flex-shrink items-center gap-2">
-            <TopbarWithLeftNav.NavItem selected={!!selected[0]} onClick={selectItem(0, "home")}>
-              Home
-            </TopbarWithLeftNav.NavItem>
-            <TopbarWithLeftNav.NavItem selected={!!selected[1]} onClick={selectItem(1, "skills")}>Skills</TopbarWithLeftNav.NavItem>
-            <TopbarWithLeftNav.NavItem selected={!!selected[2]} onClick={selectItem(2, "projects")}>Projects</TopbarWithLeftNav.NavItem>
-            <TopbarWithLeftNav.NavItem selected={!!selected[3]} onClick={selectItem(3, "connect")}>Connect</TopbarWithLeftNav.NavItem>
+            <LinkButton variant="tertiary" href="/#home">Home</LinkButton>
+            <LinkButton variant="tertiary" href="/#skills">{ lang === "en" ? "Skills" : "Habilidades"}</LinkButton>
+            <LinkButton variant="tertiary" href="/#projects">{ lang === "en" ? "Projects" : "Projetos"}</LinkButton>
+            <LinkButton variant="tertiary" href="/#connect">{ lang === "en" ? "Contact" : "Contato"}</LinkButton>
           </div>
         }
-        rightSlot={<ToggleLangButton/>}
+        rightSlot={<ToggleLangButton lang={lang}/>}
       />
       {children ? (
         <div className="flex-grow flex w-full shrink-0 basis-0 flex-col items-start gap-4 overflow-y-auto bg-default-background">
@@ -78,19 +67,18 @@ const DefaultPageLayoutRoot = React.forwardRef<
 
 export const DefaultPageLayout = DefaultPageLayoutRoot;
 
-function ToggleLangButton() {
-  const [isEnglish, setIsEnglish] = useState(true);
-
+function ToggleLangButton(props: { lang: Lang }) {
   return (
     <div className="flex gap-0 mr-5">
-      <Button
-        variant="neutral-secondary"
-        icon="FeatherGlobe"
-        onClick={() => setIsEnglish(!isEnglish)}
+      <LinkButton
+        variant="secondary"
+        iconName="FeatherGlobe"
+        href={props.lang === "en" ? "/" : "en"}
       >
-        {isEnglish ? "En" : "Pt-br"}
-      </Button>
-      <Image className="ml-3" src={`/${isEnglish ? "us" : "br"}.svg`} width={24} height={24} alt="Language"/>
+        {props.lang === "en" ? "PT-BR" : "EN"}
+      </LinkButton>
+      <Image className="ml-3" src={`/${props.lang === "en" ? "us" : "br"}.svg`} width={24} height={24} alt="Language"/>
     </div>
   )
 }
+
