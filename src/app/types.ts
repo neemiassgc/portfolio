@@ -31,3 +31,18 @@ export type InputProps = {
   email: BasicInput,
   message: BasicInput
 }
+
+export type ContactProps = {
+  email: string,
+  phone: string,
+  location: string,
+  profilePhoto: string,
+}
+
+export type SectionProps = {
+  title: string,
+  subtitle: string,
+  content?: string
+}
+
+export type Lang = "en" | "pt-br"
