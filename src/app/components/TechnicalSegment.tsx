@@ -94,7 +94,7 @@ async function BadgeSet(props: {
           {props.title.text}
         </span>
       </div>
-      <div className="flex flex-wrap items-start gap-2">
+      <div className="ml-1 flex flex-wrap items-start gap-8">
         {
           props.badges.items.map(e => e.toLowerCase()).map((badgeName, index) => {
             return (

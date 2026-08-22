@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function BadgeShield(props: { rawLogo: string, title: string}) {
   return (
-    <div className="flex items-center gap-2 bg-default-background border-2 border-neutral-border py-1 px-3 rounded-full">
+    <div className="flex items-center gap-2">
       <Image
         width={20}
         height={20}
