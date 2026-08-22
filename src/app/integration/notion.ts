@@ -1,13 +1,13 @@
 import { ContactProps, Lang, SectionProps } from "@/types";
 
-async function fetchPageContactById(id: string) {
-  const notionToken = process.env["NOTION_TOKEN"];
-  const notionVersion = process.env["NOTION_VERSION"];
+export async function fetchPageContactById(id: string) {
+  const notionToken = process.env["NOTION_TOKEN"] as string;
+  const notionVersion = process.env["NOTION_VERSION"] as string;
 
   const resource = await fetch("https://api.notion.com/v1/pages/" + id, {
     headers: {
-      "Notion-Version": notionVersion as string,
-      Authorization: notionToken as string
+      "Notion-Version": notionVersion,
+      Authorization: `Bearer ${notionToken}`
     }
   })
 
