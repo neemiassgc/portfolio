@@ -7,7 +7,7 @@ import ProjectNavBar from "./ProjectNavBar";
 import { Button } from "@/ui/components/Button";
 import Link from "next/link";
 import { IconWithBackground } from "@/ui/components/IconWithBackground";
-import { sortByCategory } from "@/tools";
+import { sortByCategory } from "@/misc";
 import Image from "next/image";
 import { findSectionData } from "@/integration/notion";
 

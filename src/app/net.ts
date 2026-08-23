@@ -1,5 +1,5 @@
 import { GitHubRepository, ProjectCategory, Repository } from "@/types";
-import { includeStartingWith } from "./tools";
+import { includeStartingWith } from "./misc";
 
 export async function getRepositories(): Promise<Repository[]> {
   const fetchedRepositories: GitHubRepository[] = await authorizedFetch("https://api.github.com/user/repos");
