@@ -24,3 +24,14 @@ export function sortByCategory<E extends { category: string }>(set: E[]) {
   }
   set.sort(compareFunction);
 }
+
+export async function fetchRawIcon(name: string) {
+  const domain = process.env["S3_DOMAIN"];
+  const iconPath = process.env["S3_ICON_PATH"];
+  const req = await fetch(`${domain}${iconPath}/${polish(name)}.svg`);
+  return req.text();
+}
+
+export function polish(str: string): string {
+  return str.replaceAll(" ", "").replaceAll(".", "dot").toLowerCase();
+}

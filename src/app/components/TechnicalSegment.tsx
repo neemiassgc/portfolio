@@ -4,6 +4,7 @@ import { IconName } from "@subframe/core";
 import Header from "./Header";
 import BadgeShield from "./BadgeShield";
 import { findSectionData } from "@/integration/notion";
+import { fetchRawIcon } from "@/misc";
 
 export default async function TechnicalSegment(props: { lang: Lang }) {
   const technicalSectionData = await findSectionData(1, props.lang);
@@ -75,12 +76,7 @@ async function BadgeSet(props: {
   }
 }) {
 
-  const data = await Promise.all(props.badges.items.map(async item => {
-    const domain = process.env["S3_DOMAIN"];
-    const iconPath = process.env["S3_ICON_PATH"];
-    const req = await fetch(`${domain}${iconPath}/${polish(item)}.svg`);
-    return req.text();
-  }))
+  const data = await Promise.all(props.badges.items.map(fetchRawIcon));
 
   return (
     <div className="flex w-full flex-col items-start gap-4">
@@ -105,8 +101,4 @@ async function BadgeSet(props: {
       </div>
     </div>
   )
-}
-
-function polish(str: string): string {
-  return str.replaceAll(" ", "").replaceAll(".", "dot").toLowerCase();
 }
