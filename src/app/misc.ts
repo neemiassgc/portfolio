@@ -35,3 +35,11 @@ export async function fetchRawIcon(name: string) {
 export function polish(str: string): string {
   return str.replaceAll(" ", "").replaceAll(".", "dot").toLowerCase();
 }
+
+export type TechIconNames =
+  "apachekafka" | "appengine" | "auth0" | "aws" | "cloudrun" |
+  "computeengine" | "css" | "docker" | "ec2" | "firebase" | "git" |
+  "googlecloud" | "hibernate" | "html5" | "insomnia" | "java" | "phaser" |
+  "javascript" | "linux" | "nextjs" | "notion" | "postgresql" | "radixui" |
+  "react" | "ruby" | "s3" | "spring" | "springboot" | "springsecurity" |
+  "subframe" | "supabase" | "tailwindcss" | "typescript" | "vercel" | "vscode"
