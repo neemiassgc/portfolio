@@ -23,7 +23,7 @@ export default async function TechnicalSegment(props: { lang: Lang }) {
           }}
           badges={{
             iconName: "FeatherCode",
-            items: ["Java", "Spring Boot", "Spring", "Spring Security", "Hibernate"]
+            items: ["Java", "Spring Boot", "Spring", "Spring Security", "Hibernate", "NodeJs"]
           }}
         />
         <BadgeSet

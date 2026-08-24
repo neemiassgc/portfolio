@@ -37,7 +37,7 @@ export function polish(str: string): string {
 }
 
 export type TechIconNames =
-  "apachekafka" | "appengine" | "auth0" | "aws" | "cloudrun" |
+  "apachekafka" | "appengine" | "auth0" | "aws" | "cloudrun" | "nodejs" |
   "computeengine" | "css" | "docker" | "ec2" | "firebase" | "git" |
   "googlecloud" | "hibernate" | "html5" | "insomnia" | "java" | "phaser" |
   "javascript" | "linux" | "nextjs" | "notion" | "postgresql" | "radixui" |
