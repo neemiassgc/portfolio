@@ -8,8 +8,9 @@ export async function POST(request: NextRequest) {
 }
 
 async function sendEmail(name: string, email: string, message: string): Promise<void> {
-  const user = process.env["GMAIL_USERNAME"];
-  const pass = process.env["GMAIL_PASS"];
+  const user = process.env["GMAIL_USERNAME"] as string;
+  const pass = process.env["GMAIL_PASS"] as string;
+  const targetEmail = process.env["TARGET_EMAIL"] as string;
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -18,7 +19,7 @@ async function sendEmail(name: string, email: string, message: string): Promise<
 
   await transporter.sendMail({
     from: user,
-    to: "neemiassgc@outlook.com",
+    to: targetEmail,
     subject: `${name} - ${email}`,
     text: message,
   });
