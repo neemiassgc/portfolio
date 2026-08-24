@@ -9,8 +9,8 @@ export default async function Stack(props: { names: TechIconNames[] }) {
           const rawIcon = await fetchRawIcon(name);
           return <Image
             key={key}
-            width={32}
-            height={32}
+            width={name === "phaser" ? 48 : 32}
+            height={name === "phaser" ? 48 : 32}
             src={`data:image/svg+xml;base64,${Buffer.from(rawIcon).toString("base64")}`}
             alt={`${name} icon`}
           />

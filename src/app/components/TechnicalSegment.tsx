@@ -34,7 +34,7 @@ export default async function TechnicalSegment(props: { lang: Lang }) {
           }}
           badges={{
             iconName: "FeatherCode",
-            items: ["HTML5", "CSS", "JavaScript", "React", "TypeScript", "Next.js", "Tailwind CSS", "Subframe", "Vercel", "Auth0"]
+            items: ["HTML5", "CSS", "JavaScript", "React", "TypeScript", "Nextjs", "Tailwind CSS", "Subframe", "Vercel", "Auth0"]
           }}
         />
         <BadgeSet
