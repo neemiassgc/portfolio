@@ -74,7 +74,6 @@ async function Card(props: {
   }
 
   const stackNames = extractStackFromTopics(props.topics);
-  console.log(stackNames);
 
   return (
     <div id={props.projectCategory} className="flex flex-col items-start gap-6 rounded-md border border-solid border-neutral-border px-6 py-6">
