@@ -36,10 +36,12 @@ export function polish(str: string): string {
   return str.replaceAll(" ", "").replaceAll(".", "dot").toLowerCase();
 }
 
-export type TechIconNames =
-  "apachekafka" | "appengine" | "auth0" | "aws" | "cloudrun" | "nodejs" |
-  "computeengine" | "css" | "docker" | "ec2" | "firebase" | "git" |
-  "googlecloud" | "hibernate" | "html5" | "insomnia" | "java" | "phaser" |
-  "javascript" | "linux" | "nextjs" | "notion" | "postgresql" | "radixui" |
-  "react" | "ruby" | "s3" | "spring" | "springboot" | "springsecurity" |
-  "subframe" | "supabase" | "tailwindcss" | "typescript" | "vercel" | "vscode"
+export const acronymToIconNamesMap: {[index: string]: string} = {
+  ak: "apachekafka", ae: "appengine", au: "auth0", aw: "aws", cr: "cloudrun",
+  nj: "nodejs", ce: "computeengine", cs: "css", do: "docker", ec: "ec2",
+  fb: "firebase", gi: "git", gc: "googlecloud", hb: "hibernate", ht: "html5",
+  in: "insomnia", jv: "java", ph: "phaser", js: "javascript", lx: "linux", nx: "nextjs",
+  no: "notion", pg: "postgresql", rd: "radixui", re: "react", rb: "ruby", s3: "s3",
+  sp: "spring", sb: "springboot", ss: "springsecurity", sf: "subframe", su: "supabase",
+  tw: "tailwindcss", ts: "typescript", ve: "vercel", vs: "vscode"
+}

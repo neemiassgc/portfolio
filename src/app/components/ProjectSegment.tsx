@@ -1,5 +1,5 @@
 import Header from "./Header";
-import { Lang, ProjectCategory, Repository, Variant } from "@/types";
+import { Lang, ProjectCategory, Repository, TechIcon, Variant } from "@/types";
 import { getRepositories } from "@/integration/github";
 import { IconName } from "@subframe/core";
 import { Badge } from "@/ui/components/Badge";
@@ -7,9 +7,10 @@ import ProjectNavBar from "./ProjectNavBar";
 import { Button } from "@/ui/components/Button";
 import Link from "next/link";
 import { IconWithBackground } from "@/ui/components/IconWithBackground";
-import { sortByCategory } from "@/misc";
+import { acronymToIconNamesMap, sortByCategory } from "@/misc";
 import Image from "next/image";
 import { findSectionData } from "@/integration/notion";
+import Stack from "./Stack";
 
 export default async function ProjectSegment(props: { lang: Lang }) {
   const repositories = await getRepositories();
@@ -73,6 +74,9 @@ async function Card(props: {
     "tool": "error"
   }
 
+  const stackNames = extractStackFromTopics(props.topics);
+  console.log(stackNames);
+
   return (
     <div id={props.projectCategory} className="flex flex-col items-start gap-6 rounded-md border border-solid border-neutral-border px-6 py-6">
       <div className="flex w-full flex-col items-start gap-4">
@@ -97,11 +101,9 @@ async function Card(props: {
             </span>
           </div>
         </div>
-        <div className="flex flex-wrap items-start gap-2">
-          {props.topics.map((topic: string, index: number) => (
-            <Badge key={index} variant="neutral">{topic}</Badge>
-          ))}
-        </div>
+        {
+          stackNames && <Stack names={stackNames}/>
+        }
         <div className="flex items-center gap-2">
           <LinkButton
             variant="neutral-secondary"
@@ -161,4 +163,21 @@ function splitByTwo(repositories: Repository[]): Repository[][] {
     else right.push(repositories[i]);
   }
   return [left, right];
+}
+
+function extractStackFromTopics(topics: string[]): TechIcon[] | null {
+  const targetTopic = topics.find(topic => topic.startsWith("4"));
+  if (!targetTopic) return null;
+
+  const stackLine = targetTopic.slice(1);
+  const stackNames: TechIcon[] = [];
+  const buffer = [];
+  for (let i = 1; i <= stackLine.length; i++) {
+    buffer.push(stackLine[i - 1]);
+    if (i % 2 === 0) {
+      stackNames.push(acronymToIconNamesMap[buffer.join("")] as TechIcon)
+      buffer.length = 0;
+    }
+  }
+  return stackNames;
 }
