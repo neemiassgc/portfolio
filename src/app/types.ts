@@ -46,3 +46,11 @@ export type SectionProps = {
 }
 
 export type Lang = "en" | "pt-br"
+
+export type TechIcon =
+  "apachekafka" | "appengine" | "auth0" | "aws" | "cloudrun" | "nodejs" |
+  "computeengine" | "css" | "docker" | "ec2" | "firebase" | "git" |
+  "googlecloud" | "hibernate" | "html5" | "insomnia" | "java" | "phaser" |
+  "javascript" | "linux" | "nextjs" | "notion" | "postgresql" | "radixui" |
+  "react" | "ruby" | "s3" | "spring" | "springboot" | "springsecurity" |
+  "subframe" | "supabase" | "tailwindcss" | "typescript" | "vercel" | "vscode"
