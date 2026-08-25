@@ -2,7 +2,6 @@ import Header from "./Header";
 import { Lang, ProjectCategory, Repository, TechIcon, Variant } from "@/types";
 import { getRepositories } from "@/integration/github";
 import { IconName } from "@subframe/core";
-import { Badge } from "@/ui/components/Badge";
 import ProjectNavBar from "./ProjectNavBar";
 import { Button } from "@/ui/components/Button";
 import Link from "next/link";

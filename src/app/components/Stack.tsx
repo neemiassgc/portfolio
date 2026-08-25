@@ -1,7 +1,8 @@
-import { fetchRawIcon, TechIconNames } from "@/misc";
+import { fetchRawIcon } from "@/misc";
+import { TechIcon } from "@/types";
 import Image from "next/image";
 
-export default async function Stack(props: { names: TechIconNames[] }) {
+export default async function Stack(props: { names: TechIcon[] }) {
   return (
     <div className="flex gap-4">
       {
